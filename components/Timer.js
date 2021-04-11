@@ -1,65 +1,71 @@
-import React, { Component, useState } from 'react';
-import ShowTime from '../components/ShowTime';
-import BtnTime from '../components/BtnTime';
+import React, { useState, useEffect } from 'react';
 
-function Timer() {
-  const [time, setTime] = useState({ms:0, s:0, m:0, h:0});
-  const [interv, setInterv] = useState();
-  const [status, setStatus] = useState(0);
-  // Not started = 0
-  // started = 1
-  // stopped = 2
+const Timer = () => {
+  const [second, setSecond] = useState('00');
+  const [minute, setMinute] = useState('00');
+  const [isActive, setIsActive] = useState(false);
+  const [counter, setCounter] = useState(0);
 
-  const start = () => {
-    run();
-    setStatus(1);
-    setInterv(setInterval(run, 10));
-  };
+  useEffect(() => {
+    let intervalId;
 
-  var updatedMs = time.ms, updatedS = time.s, updatedM = time.m, updatedH = time.h;
+    if (isActive) {
+      intervalId = setInterval(() => {
+        const secondCounter = counter % 60;
+        const minuteCounter = Math.floor(counter / 60);
 
-  const run = () => {
-    if(updatedM === 60){
-      updatedH++;
-      updatedM = 0;
+        let computedSecond =
+          String(secondCounter).length === 1
+            ? `0${secondCounter}`
+            : secondCounter;
+        let computedMinute =
+          String(minuteCounter).length === 1
+            ? `0${minuteCounter}`
+            : minuteCounter;
+
+        setSecond(computedSecond);
+        setMinute(computedMinute);
+
+        setCounter((counter) => counter + 1);
+      }, 1000);
     }
-    if(updatedS === 60){
-      updatedM++;
-      updatedS = 0;
-    }
-    if(updatedMs === 100){
-      updatedS++;
-      updatedMs = 0;
-    }
-    updatedMs++;
-    return setTime({ms:updatedMs, s:updatedS, m:updatedM, h:updatedH});
-  };
 
-  const stop = () => {
-    clearInterval(interv);
-    setStatus(2);
-  };
+    return () => clearInterval(intervalId);
+  }, [isActive, counter]);
 
-  const reset = () => {
-    clearInterval(interv);
-    setStatus(0);
-    setTime({ms:0, s:0, m:0, h:0})
-  };
-
-  const resume = () => start();
-
+  function stopTimer() {
+    setIsActive(false);
+    setCounter(0);
+    setSecond('00');
+    setMinute('00');
+  }
 
   return (
-    <div className="main-section">
-     <div className="clock-holder">
-          <div className="stopwatch">
-               <ShowTime time={time}/>
-               <BtnTime status={status} resume={resume} reset={reset} stop={stop} start={start}/>
+    <div>
+      <h2 className='text-lg font-bold text-gray-400 mb-1.5'>Timer</h2>
+      <div className='text-center'>
+        <div className='flex items-center justify-center mt-4 mb-6'>
+          <div class='text-6xl mx-7'>
+            {minute}:{second}
           </div>
-     </div>
+        </div>
+        <button
+          className={`inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none${
+            isActive ? 'active' : 'inactive'
+          }`}
+          onClick={() => setIsActive(!isActive)}
+        >
+          {isActive ? 'Pause' : 'Start'}
+        </button>
+        <button
+          className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-gray-400 hover:text-white hover:bg-gray-900 focus:outline-none'
+          onClick={stopTimer}
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default Timer;
-

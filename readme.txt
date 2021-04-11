@@ -26,7 +26,11 @@ https://www.tailwind-kit.com/components
 
 container w-full
 
-
+Ref.Time : 
+https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks
+TimerStart
+https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
+https://codesandbox.io/s/react-hooks-timer-cuq74?from-embed=&file=/src/Timer.js
 
 Time
 class Timer extends Component {

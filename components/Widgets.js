@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import JustSaycard from './JustSaycard';
 import Timer from './Timer';
 import Counter from './Counter';
+import TimerHook from './Timer';
 
 class Widgets extends Component {
   render() {
