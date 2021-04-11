@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import JustSaycard from './JustSaycard';
+import Timer from './Timer';
+import Counter from './Counter';
 
 class Widgets extends Component {
   render() {
@@ -15,12 +17,12 @@ class Widgets extends Component {
             </div>
             <div className='col-span-12 sm:col-span-6 md:col-span-3'>
               <div className='p-5  border-1 bg-white rounded-2xl'>
-                <JustSaycard />
+                <Timer />
               </div>
             </div>
             <div className='col-span-12 sm:col-span-6 md:col-span-3'>
               <div className='p-5  border-1 bg-white rounded-2xl'>
-                <JustSaycard />
+                <Counter />
               </div>
             </div>
           </div>
