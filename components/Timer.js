@@ -45,7 +45,7 @@ const Timer = () => {
       <h2 className='text-lg font-bold text-gray-400 mb-1.5'>Timer</h2>
       <div className='text-center'>
         <div className='flex items-center justify-center mt-4 mb-6'>
-          <div class='text-6xl mx-7'>
+          <div className='text-6xl mx-7'>
             {minute}:{second}
           </div>
         </div>

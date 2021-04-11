@@ -8,14 +8,14 @@ class LinkPage extends Component {
         <h1 className='text-4xl font-bold undefined'>Daytech Dashboard</h1>
         <div className='my-5'>
           <Link href='/'>
-            <a className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'>
+            <button className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'>
               Widgets
-            </a>
+            </button>
           </Link>
           <Link href='/about'>
-            <a className='inline-block px-4 py-1 mr-1.5 rounded-lg text-blue-500 bg-gray-100 hover:text-white hover:bg-gray-900 focus:outline-none'>
+            <button className='inline-block px-4 py-1 mr-1.5 rounded-lg text-blue-500 bg-gray-100 hover:text-white hover:bg-gray-900 focus:outline-none'>
               About
-            </a>
+            </button>
           </Link>
         </div>
       </div>
