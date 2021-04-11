@@ -11,7 +11,9 @@ export default function Home() {
       </Head>
       <div className='w-full h-screen max-h-screen min-w-full bg-gray-200'>
         <LinkPage />
-        <Widgets  />
+        <div className='w-100 max-w-4xl mx-auto p-5'>
+          <Widgets />
+        </div>
       </div>
     </div>
   );
