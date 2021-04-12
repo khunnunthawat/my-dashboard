@@ -26,7 +26,7 @@ export default function Counter() {
     styled = (
       <button
         onClick={() => setCount(0)}
-        className='text-white focus:outline-none px-4 py-1 rounded-md bg-blue-500 hover:bg-blue-600'
+        className='text-white focus:outline-none px-4 py-1 rounded-md bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
       >
         Reset
       </button>
@@ -42,7 +42,7 @@ export default function Counter() {
   }
 
   return (
-    <div className='md:row-start-2 pb-4'>
+    <div className='md:break-inside pb-4'>
       <div className='p-5 border-1 bg-white rounded-2xl'>
         <h2 className='text-lg font-bold text-gray-400 mb-1.5'>Counter</h2>
         <div className='text-center'>

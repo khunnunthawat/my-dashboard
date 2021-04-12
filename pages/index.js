@@ -5,16 +5,13 @@ import Widgets from '../components/Widgets';
 
 export default function Home() {
   return (
-    <div>
+    <div className='w-full h-screen max-h-screen min-w-full bg-gray-200'>
       <Head>
         <title>Widgets - Daytech Dashboard</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='w-full h-screen max-h-screen min-w-full bg-gray-200'>
-        <LinkPage />
-        {/* <WidgetsCard /> */}
-        <Widgets />
-      </div>
+      <LinkPage />
+      <Widgets />
     </div>
   );
 }
