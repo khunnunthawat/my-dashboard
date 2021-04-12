@@ -4,6 +4,7 @@
 
 /* Add the lines below */
 @layer utilities {
+
   @variants responsive {
     .masonry {
       column-count: 2;

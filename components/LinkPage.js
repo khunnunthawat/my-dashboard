@@ -8,9 +8,9 @@ export default function LinkPage() {
   function getLinkPage(pageName) {
     let navClass = 'inline-block px-4 py-1 mr-1.5 rounded-lg';
     if (router.pathname === pageName) {
-      navClass = `${navClass} inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none`;
+      navClass = `${navClass} text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none`;
     } else {
-      navClass = `${navClass} inline-block px-4 py-1 mr-1.5 rounded-lg text-blue-500 bg-gray-100 hover:text-white hover:bg-gray-900 focus:outline-none`;
+      navClass = `${navClass} text-blue-500 bg-gray-100 hover:text-white hover:bg-gray-900 focus:outline-none`;
     }
     return navClass;
   }
