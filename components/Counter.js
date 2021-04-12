@@ -53,7 +53,7 @@ export default function Counter() {
               onClick={() => setCount(count + 1)}
               className='text-5xl rounded-full w-10 text-center focus:outline-none text-blue-500'
             >
-              +
+              ++
             </button>
           </div>
           {styled}
