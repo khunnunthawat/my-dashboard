@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
+export default function Timer() {
+
   const [second, setSecond] = useState('00');
   const [minute, setMinute] = useState('00');
   const [isActive, setIsActive] = useState(false);
@@ -68,6 +69,4 @@ const Timer = () => {
       </div>
     </div>
   );
-};
-
-export default Timer;
+}
