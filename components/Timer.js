@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Card from '../components/Card';
 
 export default function Timer() {
-
   const [second, setSecond] = useState('00');
   const [minute, setMinute] = useState('00');
   const [isActive, setIsActive] = useState(false);
@@ -42,9 +42,8 @@ export default function Timer() {
   }
 
   return (
-    <div className='md:break-inside pb-4'>
-      <div className='p-5 border-1 bg-white rounded-2xl'>
-        <h2 className='text-lg font-bold text-gray-400 mb-1.5'>Timer</h2>
+    <Card title='Timer'>
+      <div className='md:break-inside'>
         <div className='text-center'>
           <div className='flex items-center justify-center mt-4 mb-6'>
             <div className='text-6xl mx-7'>
@@ -67,6 +66,6 @@ export default function Timer() {
           </button>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
