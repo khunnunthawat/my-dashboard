@@ -31,33 +31,3 @@ https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks
 TimerStart
 https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 https://codesandbox.io/s/react-hooks-timer-cuq74?from-embed=&file=/src/Timer.js
-
-Time
-class Timer extends Component {
-
-  const [time, setTime] = useState({ms:0, s:0, m:0, h:0});
-  const [interv, setInterv] = useState();
-  const[status, setStatus] = useState(0);
-  
-  render() {
-    return (
-      <div>
-        <h2 class='text-lg font-bold text-gray-400 mb-1.5'>Timer</h2>
-        <div className='text-center'>
-          <div className='flex items-center justify-center mt-4 mb-6'>
-            <div class='text-6xl mx-7'>00:00</div>
-          </div>
-          <button class='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'>
-            Start
-          </button>
-          <button
-            class=' inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
-            disabled=''
-          >
-            Reset
-          </button>
-        </div>
-      </div>
-    );
-  }
-}

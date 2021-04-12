@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import JustSaycard from './JustSaycard';
 import Timer from './Timer';
 import Counter from './Counter';
+import WidgetsCard from './WidgetsCard';
 
 class Widgets extends Component {
   render() {
@@ -10,7 +11,9 @@ class Widgets extends Component {
         <h2 className='text-2xl undefined'>Widgets</h2>
         <div className='pt-3'>
           <div className='grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4'>
-            <JustSaycard />
+            <WidgetsCard>
+              <JustSaycard />
+            </WidgetsCard>
             <Timer />
             <Counter />
           </div>
@@ -21,3 +24,5 @@ class Widgets extends Component {
 }
 
 export default Widgets;
+
+// grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4

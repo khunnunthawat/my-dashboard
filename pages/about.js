@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import LinkPage from '../components/LinkPage';
 import AboutContent from '../components/AboutContent';
+import LinkPage from '../components/LinkPage';
 
 class About extends Component {
   render() {
