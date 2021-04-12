@@ -6,7 +6,7 @@ import Counter from './Counter';
 export default function Widgets() {
   return (
     <div className='w-100 max-w-4xl mx-auto p-5'>
-      <h2 className='text-2xl undefined'>Widgets</h2>
+      <h2 className='text-2xl'>Widgets</h2>
       <div className='pt-3'>
         <div className='md:masonry'>
           <JustSaycard />
