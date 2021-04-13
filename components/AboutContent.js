@@ -3,7 +3,7 @@ import Card from '../components/Card';
 
 export default function AboutContent() {
   return (
-    <div className='w-100 max-w-4xl mx-auto p-5'>
+    <div>
       <h2 className='text-2xl'>About</h2>
       <div className='pt-3'>
         <Card title='I love <programming />'>
