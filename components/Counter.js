@@ -1,45 +1,23 @@
 import React, { useState } from 'react';
 import Card from '../components/Card';
+import BtnGo from './BtnGo';
 
 export default function Counter() {
   const [count, setCount] = useState(0);
-  let styled;
+
+  let clearCount;
   let decrease;
 
-  if (count <= 0) {
-    styled = (
-      <button
-        onClick={() => setCount(0)}
-        className='text-white focus:outline-none px-4 py-1 rounded-md bg-gray-300'
-      >
-        Reset
-      </button>
-    );
-    decrease = (
-      <button
-        onClick={() => setCount(0)}
-        className='text-5xl rounded-full w-10 text-center focus:outline-none text-gray-300'
-      >
-        -
-      </button>
-    );
+  let countCss = 'text-5xl rounded-full w-10 text-center focus:outline-none';
+  let countBlue = 'text-blue-500';
+  let countGray = 'text-gray-300';
+
+  if (count == 0) {
+    clearCount = <button><BtnGo check={'gray'} btnName='Reset' /></button>
+    decrease = <button className={`${countCss} + ${countGray}`}>-</button>;
   } else {
-    styled = (
-      <button
-        onClick={() => setCount(0)}
-        className='text-white focus:outline-none px-4 py-1 rounded-md bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
-      >
-        Reset
-      </button>
-    );
-    decrease = (
-      <button
-        onClick={() => setCount(count - 1)}
-        className='text-5xl rounded-full w-10 text-center focus:outline-none text-blue-600'
-      >
-        -
-      </button>
-    );
+    clearCount = <button onClick={ () => setCount(0)}><BtnGo check={'blue'} btnName='Reset' /></button>
+    decrease = <button onClick={ () => setCount(count - 1)} className={`${countCss} + ${countBlue}`}>-</button>
   }
 
   return (
@@ -51,12 +29,12 @@ export default function Counter() {
             <div className='text-6xl mx-7'>{count}</div>
             <button
               onClick={() => setCount(count + 1)}
-              className='text-5xl rounded-full w-10 text-center focus:outline-none text-blue-500'
+              className={`${countCss} + ${countBlue}`}
             >
               +
             </button>
           </div>
-          {styled}
+          {clearCount}
         </div>
       </div>
     </Card>
