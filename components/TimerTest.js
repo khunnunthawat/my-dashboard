@@ -1,19 +1,11 @@
 import React, { useState, useRef } from 'react';
 import Card from '../components/Card';
 
-export default function TimerTest(initialState = 0) {
-  const [timer, setTimer] = useState(initialState);
+export default function TimerTest() {
+  const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const countRef = useRef(null);
-
-  const formatTime = (timer) => {
-    const getSeconds = `0${timer % 60}`.slice(-2);
-    const minutes = `${Math.floor(timer / 60)}`;
-    const getMinutes = `0${minutes % 60}`.slice(-2);
-
-    return `${getMinutes} : ${getSeconds}`;
-  };
 
   const handleStart = () => {
     setIsActive(true);
@@ -40,6 +32,14 @@ export default function TimerTest(initialState = 0) {
     setIsActive(false);
     setIsPaused(false);
     setTimer(0);
+  };
+
+  const formatTime = () => {
+    const getSeconds = `0${timer % 60}`.slice(-2);
+    const minutes = `${Math.floor(timer / 60)}`;
+    const getMinutes = `0${minutes % 60}`.slice(-2);
+
+    return `${getMinutes} : ${getSeconds}`;
   };
 
   return (

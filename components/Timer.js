@@ -1,71 +1,89 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Card from '../components/Card';
 
-export default function Timer() {
-  const [second, setSecond] = useState('00');
-  const [minute, setMinute] = useState('00');
+export default function TimerTest() {
+  const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [counter, setCounter] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const countRef = useRef(null);
 
-  useEffect(() => {
-    let intervalId;
+  const handleStart = () => {
+    setIsActive(true);
+    setIsPaused(true);
+    countRef.current = setInterval(() => {
+      setTimer((timer) => timer + 1);
+    }, 1000);
+  };
 
-    if (isActive) {
-      intervalId = setInterval(() => {
-        const secondCounter = counter % 60;
-        const minuteCounter = Math.floor(counter / 60);
+  const handlePause = () => {
+    clearInterval(countRef.current);
+    setIsPaused(false);
+  };
 
-        let computedSecond =
-          String(secondCounter).length === 1
-            ? `0${secondCounter}`
-            : secondCounter;
-        let computedMinute =
-          String(minuteCounter).length === 1
-            ? `0${minuteCounter}`
-            : minuteCounter;
+  const handleResume = () => {
+    setIsPaused(true);
+    countRef.current = setInterval(() => {
+      setTimer((timer) => timer + 1);
+    }, 1000);
+  };
 
-        setSecond(computedSecond);
-        setMinute(computedMinute);
-
-        setCounter((counter) => counter + 1);
-      }, 1000);
-    }
-
-    return () => clearInterval(intervalId);
-  }, [isActive, counter]);
-
-  function stopTimer() {
+  const handleReset = () => {
+    clearInterval(countRef.current);
     setIsActive(false);
-    setCounter(0);
-    setSecond('00');
-    setMinute('00');
-  }
+    setIsPaused(false);
+    setTimer(0);
+  };
+
+  const formatTime = () => {
+    const getSeconds = `0${timer % 60}`.slice(-2);
+    const minutes = `${Math.floor(timer / 60)}`;
+    const getMinutes = `0${minutes % 60}`.slice(-2);
+
+    return `${getMinutes} : ${getSeconds}`;
+  };
 
   return (
-    <Card title='Timer'>
-      <div className='md:break-inside'>
-        <div className='text-center'>
-          <div className='flex items-center justify-center mt-4 mb-6'>
-            <div className='text-6xl mx-7'>
-              {minute}:{second}
+    <>
+      <Card title='Timer'>
+        <div className='md:break-inside'>
+          <div className='text-center'>
+            <div className='flex items-center justify-center mt-4 mb-6'>
+              <div className='text-6xl mx-7'>{formatTime(timer)}</div>
+            </div>
+            <div className='buttons'>
+              {!isActive && !isPaused ? (
+                <button
+                  className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
+                  onClick={handleStart}
+                >
+                  Start
+                </button>
+              ) : isPaused ? (
+                <button
+                  className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
+                  onClick={handlePause}
+                >
+                  Pause
+                </button>
+              ) : (
+                <button
+                  className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
+                  onClick={handleResume}
+                >
+                  Resume
+                </button>
+              )}
+              <button
+                className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-gray-300 hover:text-white hover:bg-gray-900 focus:outline-none'
+                onClick={handleReset}
+                disabled={!isActive}
+              >
+                Reset
+              </button>
             </div>
           </div>
-          <button
-            className={`inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none${
-              isActive ? 'active' : 'inactive'
-            }`}
-            onClick={() => setIsActive(!isActive)}
-          >
-            {isActive ? 'Pause' : 'Start'}
-          </button>
-          <button
-            className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-gray-400 hover:text-white hover:bg-gray-900 focus:outline-none'
-            onClick={stopTimer}
-          >
-            Reset
-          </button>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </>
   );
 }
