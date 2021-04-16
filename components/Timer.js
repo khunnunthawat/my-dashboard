@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Card from '../components/Card';
+import Button from '../components/BtnGo';
 
 export default function TimerTest() {
   const [timer, setTimer] = useState(0);
@@ -50,37 +51,27 @@ export default function TimerTest() {
             <div className='flex items-center justify-center mt-4 mb-6'>
               <div className='text-6xl mx-7'>{formatTime(timer)}</div>
             </div>
-            <div className='buttons'>
+            <>
               {!isActive && !isPaused ? (
-                <button
-                  className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
-                  onClick={handleStart}
-                >
-                  Start
+                <button onClick={handleStart}>
+                  <Button check={'blue'} btnName='Start' />
                 </button>
               ) : isPaused ? (
-                <button
-                  className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
-                  onClick={handlePause}
-                >
-                  Pause
+                <button onClick={handlePause}>
+                  <Button check={'blue'} btnName='Pause' />
                 </button>
               ) : (
-                <button
-                  className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-blue-500 hover:text-white hover:bg-gray-900 focus:outline-none'
-                  onClick={handleResume}
-                >
-                  Resume
+                <button onClick={handleResume}>
+                  <Button check={'blue'} btnName='Resume' />
                 </button>
               )}
               <button
-                className='inline-block px-4 py-1 mr-1.5 rounded-lg text-white bg-gray-300 hover:text-white hover:bg-gray-900 focus:outline-none'
                 onClick={handleReset}
                 disabled={!isActive}
               >
-                Reset
+                <Button check={'gray'} btnName='Reset' />
               </button>
-            </div>
+            </>
           </div>
         </div>
       </Card>
