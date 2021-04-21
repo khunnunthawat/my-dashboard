@@ -8,6 +8,7 @@ export default function WidgetsCard({ title, children }) {
           <h2 className='text-lg font-bold text-gray-400 mb-1.5'>{title}</h2>
           {children}
         </div>
+        
       </div>
     </>
   );

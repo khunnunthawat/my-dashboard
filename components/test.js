@@ -1,17 +1,12 @@
-const handleClear = function () {
-    setListAllWidgets([]);
-  };
 
-  let clearBtn = (
-    <Button doClick={handleClear} check={check} disabled={!disabled}>
-      <BiBomb className={iconSty} /> Clear all
-    </Button>
-  );
+import { MdClose } from 'react-icons/md';
+import { MdEdit } from 'react-icons/md';
 
-  if (listAllWidgets.length > 0) {
-    clearBtn = (
-      <Button doClick={handleClear} check={!check} disabled={!disabled}>
-        <BiBomb className={iconSty} /> Clear all
-      </Button>
-    );
-  }
+<div class='absolute top-5 right-5'>
+  <button class='text-lg text-gray-600 focus:outline-none mr-2'>
+    <MdEdit />
+  </button>
+  <button class='text-lg text-gray-600 focus:outline-none undefined'>
+    <MdClose />
+  </button>
+</div>

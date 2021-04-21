@@ -31,3 +31,41 @@ https://upmostly.com/tutorials/build-a-react-timer-component-using-hooks
 TimerStart
 https://dev.to/emmaadesile/build-a-timer-using-react-hooks-3he2
 https://codesandbox.io/s/react-hooks-timer-cuq74?from-embed=&file=/src/Timer.js
+
+###
+// Clear widget
+  const clearWidgets = () => {
+    // clear all history
+    setListAllWidgets([]);
+  };
+
+  let colorTool = false;
+
+  let clearBtn = (
+    <Btn onClick={clearWidgets} colorTool={colorTool}>
+      <RiSettings3Line className={`${iconTool}`} /> Settings
+    </Btn>
+  );
+  if (listAllWidgets.length > 0) {
+    clearBtn = (
+      <Btn onClick={clearWidgets} colorTool={!colorTool}>
+        <RiSettings3Line className={`${iconTool}`} /> Settings
+      </Btn>
+    );
+  }
+###
+
+###
+// iconEdit
+  import { MdClose } from 'react-icons/md';
+  import { MdEdit } from 'react-icons/md';
+
+  <div class='absolute top-5 right-5'>
+    <button class='text-lg text-gray-600 focus:outline-none mr-2'>
+      <MdEdit />
+    </button>
+    <button class='text-lg text-gray-600 focus:outline-none undefined'>
+      <MdClose />
+    </button>
+  </div>
+###

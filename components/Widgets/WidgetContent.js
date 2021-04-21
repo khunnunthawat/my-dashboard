@@ -4,7 +4,7 @@ import ModalCard from '../Modals/ModalCard';
 import WidgetMenuCard from './WidgetMenuCard';
 // icon
 import { RiAddCircleLine, RiIncreaseDecreaseLine } from 'react-icons/ri';
-import { BiBomb } from 'react-icons/bi';
+import { RiSettings3Line } from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
 import { TextHead } from '../Modals/TextHead';
@@ -18,11 +18,13 @@ import Card from '../Layouts/Card';
 import JustSay from './JustSay';
 import Counter from './Counter';
 import Timer from './Timer';
+import ModalSettings from '../SettingTools/ModalSettings';
 
 export default function WidgetContent() {
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
   const [modalActiveJustsay, setModalActiveJustsay] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
+  const [modalActiveSetting, setModalActiveSetting] = useState(false);
 
   const [titleJustsay, setTitleJustsay] = useState('');
   const [counter, setCouter] = useState('');
@@ -73,6 +75,11 @@ export default function WidgetContent() {
     setModalActiveMenu(false);
     setModalActiveJustsay(false);
     setModalActiveCounter(false);
+    setModalActiveSetting(false);
+  };
+
+  const handleClickSetting = function () {
+    setModalActiveSetting(true);
   };
 
   // DateTimeNow
@@ -121,41 +128,42 @@ export default function WidgetContent() {
   let flexClass = 'md:flex md:flex-wrap md:-mr-4';
 
   // Clear widget
-  const clearWidgets = () => {
-    // clear all history
-    setListAllWidgets([]);
-  };
+  // const clearWidgets = () => {
+  //   // clear all history
+  //   setListAllWidgets([]);
+  // };
 
-  let colorTool = false;
+  // let colorTool = false;
 
-  let clearBtn = (
-    <Btn onClick={clearWidgets} colorTool={colorTool}>
-      <BiBomb className={`${iconTool}`} /> Clear all
-    </Btn>
-  );
-  if (listAllWidgets.length > 0) {
-    clearBtn = (
-      <Btn onClick={clearWidgets} colorTool={!colorTool}>
-        <BiBomb className={`${iconTool}`} /> Clear all
-      </Btn>
-    );
-  }
+  // let clearBtn = (
+  //   <Btn onClick={clearWidgets} colorTool={colorTool}>
+  //     <RiSettings3Line className={`${iconTool}`} /> Settings
+  //   </Btn>
+  // );
+  // if (listAllWidgets.length > 0) {
+  //   clearBtn = (
+  //     <Btn onClick={clearWidgets} colorTool={!colorTool}>
+  //       <RiSettings3Line className={`${iconTool}`} /> Settings
+  //     </Btn>
+  //   );
+  // }
 
   return (
     <>
       <h2 className='text-xl'>Widgets</h2>
       <div className='pt-3'>
-        <div className='mb-4'>
+        <div className='mb-4 space-x-1'>
           <Btn color='primary' onClick={handleClickMenu}>
             <RiAddCircleLine className={`${iconTool}`} /> Add Widget
-          </Btn>{' '}
-          {clearBtn}
-          {/* <Btn onClick={clearWidgets} color='danger'>
-            <BiBomb className={`${iconTool}`} /> Clear all
+          </Btn>
+          {/* {clearBtn} */}
+          {/* <Btn onClick={handleClickSetting} color='default'>
+            <RiSettings3Line className={`${iconTool}`} /> Settings หน้า
+            WidgetContent.js
           </Btn> */}
+          <ModalSettings />
         </div>
         <div className={`${flexClass}`}>{handleAddWidgets()}</div>
-
         {modalActiveMenu && (
           <ModalCard onCancel={handleCancel}>
             <TextHead>Add widget</TextHead>
@@ -196,6 +204,12 @@ export default function WidgetContent() {
               setListAllWidgets={setListAllWidgets}
               DateTime={DateTime}
             />
+          </ModalCard>
+        )}
+        {/* Modal_Setting */}
+        {modalActiveSetting && (
+          <ModalCard onCancel={handleCancel}>
+            <TextHead>Settings</TextHead>
           </ModalCard>
         )}
       </div>
