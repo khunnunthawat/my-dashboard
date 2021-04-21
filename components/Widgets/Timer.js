@@ -2,11 +2,15 @@ import React, { useState, useRef } from 'react';
 import Card from '../Layouts/Card';
 import Btn from '../Btn';
 
-export default function TimerTest({ title, list, index }) {
+export default function TimerTest({ title, list, onClickDelete = () => {} }) {
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const countRef = useRef(null);
+
+  const handleClick = function () {
+    onClickDelete(list);
+  };
 
   let disabled = true;
 
@@ -48,7 +52,7 @@ export default function TimerTest({ title, list, index }) {
   list.value = timer;
 
   return (
-    <Card title='Timer'>
+    <Card title='Timer' onClickDelete={handleClick}>
       <div className='text-center space-x-1'>
         <div className='flex items-center justify-center mt-4 mb-6'>
           <div className='text-6xl mx-7'>{formatTime(timer)}</div>

@@ -4,7 +4,6 @@ import ModalCard from '../Modals/ModalCard';
 import WidgetMenuCard from './WidgetMenuCard';
 // icon
 import { RiAddCircleLine, RiIncreaseDecreaseLine } from 'react-icons/ri';
-import { RiSettings3Line } from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
 import { TextHead } from '../Modals/TextHead';
@@ -14,7 +13,6 @@ import FormCounter from '../AddWidgets/FormCounter';
 import FormJustSay from '../AddWidgets/FormJustSay';
 
 // Layout
-import Card from '../Layouts/Card';
 import JustSay from './JustSay';
 import Counter from './Counter';
 import Timer from './Timer';
@@ -29,6 +27,7 @@ export default function WidgetContent() {
   const [titleJustsay, setTitleJustsay] = useState('');
   const [counter, setCouter] = useState('');
   const [timer, setTimer] = useState('');
+
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
   const handleClickMenu = function () {
@@ -78,8 +77,16 @@ export default function WidgetContent() {
     setModalActiveSetting(false);
   };
 
-  const handleClickSetting = function () {
-    setModalActiveSetting(true);
+  // const handleClickSetting = function () {
+  //   setModalActiveSetting(true);
+  // };
+
+  const handleClickDelete = function (list) {
+    if (listAllWidgets.length > 0) {
+      setListAllWidgets(
+        listAllWidgets.filter((widget) => widget.id !== list.id)
+      );
+    }
   };
 
   // DateTimeNow
@@ -95,29 +102,52 @@ export default function WidgetContent() {
   const handleAddWidgets = function () {
     if (listAllWidgets.length > 0) {
       // console.log(listAllWidgets);
-      return listAllWidgets.map((list, index) => {
+      return listAllWidgets.map((list) => {
         if (list.type === 'justSay') {
-          return <JustSay key={index} title={titleJustsay} list={list} />;
+          return (
+            <JustSay
+              onClickDelete={handleClickDelete}
+              key={list.id}
+              title={titleJustsay}
+              list={list}
+            />
+          );
         } else if (list.type === 'counter') {
-          return <Counter key={index} title={counter} list={list} />;
+          return (
+            <Counter
+              onClickDelete={handleClickDelete}
+              key={list.id}
+              title={counter}
+              list={list}
+            />
+          );
         } else if (list.type === 'timer') {
-          return <Timer key={index} title={timer} list={list} />;
+          return (
+            <Timer
+              onClickDelete={handleClickDelete}
+              key={list.id}
+              title={timer}
+              list={list}
+            />
+          );
         }
       });
     } else {
       return (
-        <Card>
-          <div className='text-center text-gray-400 my-8 font-light'>
-            <p className='text-4xl mb-2'>No widgets at all</p>
-            <p>
-              Click{' '}
-              <Btn color='none' onClick={handleClickMenu}>
-                HERE
-              </Btn>{' '}
-              to add a new one
-            </p>
+        <div className='md:inner md:w-1/2 pb-4 md:pr-4'>
+          <div className='p-5 border-1 bg-white rounded-2xl'>
+            <div className='text-center text-gray-400 my-8 font-light'>
+              <p className='text-4xl mb-2'>No widgets at all</p>
+              <p>
+                Click{' '}
+                <Btn color='none' onClick={handleClickMenu}>
+                  HERE
+                </Btn>{' '}
+                to add a new one
+              </p>
+            </div>
           </div>
-        </Card>
+        </div>
       );
     }
   };
@@ -152,10 +182,10 @@ export default function WidgetContent() {
     <>
       <h2 className='text-xl'>Widgets</h2>
       <div className='pt-3'>
-        <div className='mb-4 space-x-1'>
+        <div className='mb-4'>
           <Btn color='primary' onClick={handleClickMenu}>
             <RiAddCircleLine className={`${iconTool}`} /> Add Widget
-          </Btn>
+          </Btn>{' '}
           {/* {clearBtn} */}
           {/* <Btn onClick={handleClickSetting} color='default'>
             <RiSettings3Line className={`${iconTool}`} /> Settings หน้า

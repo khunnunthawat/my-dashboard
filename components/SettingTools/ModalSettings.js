@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Btn from '../Btn';
 import { RiSettings3Line } from 'react-icons/ri';
 import ModalCard from '../Modals/ModalCard';
-import { TextHead } from '../Modals/TextHead';
+import Settings from './Settings';
 
 export default function ModalSettings() {
 
@@ -25,7 +25,7 @@ export default function ModalSettings() {
       </Btn>
       {modalActiveSetting && (
         <ModalCard onCancel={handleCancel}>
-          <TextHead>Settings</TextHead>
+          <Settings />
         </ModalCard>
       )}
     </>

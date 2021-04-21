@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import Card from '../Layouts/Card';
 import Btn from '../Btn';
 
-export default function Counter({ title, list, index }) {
+export default function Counter({ title, list, onClickDelete = () => {} }) {
   const [count, setCount] = useState(list.value);
+
+  const handleClick = function () {
+    onClickDelete(list);
+  };
 
   let clearCount;
   let decrease;
@@ -13,14 +17,14 @@ export default function Counter({ title, list, index }) {
   let countBlue = 'text-blue-500';
   let countGray = 'text-gray-300';
 
-  const handleClick = () => {
+  const handleClickCount = () => {
     setCount(0);
   };
 
   if (count == 0) {
     clearCount = (
       <Btn
-        onClick={handleClick}
+        onClick={handleClickCount}
         disabled={disabled}
         color='default'
         btnName='Set zero'
@@ -30,7 +34,7 @@ export default function Counter({ title, list, index }) {
   } else {
     clearCount = (
       <Btn
-        onClick={handleClick}
+        onClick={handleClickCount}
         disabled={!disabled}
         color='primary'
         btnName='Set zero'
@@ -50,7 +54,7 @@ export default function Counter({ title, list, index }) {
   console.log(list.value);
 
   return (
-    <Card title='Counter' key={index}>
+    <Card title='Counter' key={list.id} onClickDelete={handleClick}>
       <div className='text-center'>
         <div className='flex items-center justify-center mt-4 mb-6'>
           {decrease}
