@@ -5,7 +5,8 @@ import { ModalCard } from '../Modals/ModalCard';
 import Settings from './Settings';
 
 export default function ModalSettings() {
-
+  
+const [listAllWidgets, setListAllWidgets] = useState([]);
   const [modalActiveSetting, setModalActiveSetting] = useState(false);
 
   const handleCancel = function () {
@@ -25,7 +26,7 @@ export default function ModalSettings() {
       </Btn>
       {modalActiveSetting && (
         <ModalCard onCancel={handleCancel}>
-          <Settings />
+          <Settings listAllWidgets={listAllWidgets} />
         </ModalCard>
       )}
     </>

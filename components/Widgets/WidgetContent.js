@@ -3,7 +3,7 @@ import Btn from '../Btn';
 import { ModalCard } from '../Modals/ModalCard';
 import WidgetMenuCard from './WidgetMenuCard';
 // icon
-import { RiAddCircleLine, RiIncreaseDecreaseLine } from 'react-icons/ri';
+import { RiAddCircleLine, RiIncreaseDecreaseLine, RiSettings3Line } from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
 import { TextHead } from '../Modals/TextHead';
@@ -16,7 +16,11 @@ import FormJustSay from '../AddWidgets/FormJustSay';
 import JustSay from './JustSay';
 import Counter from './Counter';
 import Timer from './Timer';
-import ModalSettings from '../SettingTools/ModalSettings';
+
+// Settings
+// import ModalSettings from '../SettingTools/ModalSettings';
+import Settings from '../SettingTools/Settings';
+import { TextHeadSetting } from '../Modals/TextHead';
 
 export default function WidgetContent() {
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
@@ -42,6 +46,10 @@ export default function WidgetContent() {
   const handleClickCounter = function () {
     setModalActiveMenu(false);
     setModalActiveCounter(true);
+  };
+
+  const handleClickSetting = function () {
+    setModalActiveSetting(true);
   };
 
   /**
@@ -167,6 +175,13 @@ export default function WidgetContent() {
     }
   };
 
+  // Clear widget
+  const clearWidgets = () => {
+    // clear all history
+    setListAllWidgets([]);
+  };
+  
+
   // CSS icon
   let iconTool = 'inline-block text-xl relative -top-0.5';
   let iconClass = 'mx-auto text-4xl';
@@ -201,7 +216,9 @@ export default function WidgetContent() {
           <Btn color='primary' onClick={handleClickMenu}>
             <RiAddCircleLine className={`${iconTool}`} /> Add Widget
           </Btn>{' '}
-          <ModalSettings />
+          <Btn onClick={handleClickSetting} color='default'>
+            <RiSettings3Line className={`${iconTool}`} /> Settings
+          </Btn>
         </div>
         <div className={`${flexClass}`}>{handleAddWidgets()}</div>
         {modalActiveMenu && (
@@ -237,7 +254,25 @@ export default function WidgetContent() {
             <FormCounter onAdd={handleClickAdd} />
           </ModalCard>
         )}
+        {/* Modal_Settings */}
+        {modalActiveSetting && (
+          <ModalCard onCancel={handleCancel}>
+            <Settings listAllWidgets={listAllWidgets}>
+              <div className='p-5 border-1 bg-white rounded-2xl relative mb-4'>
+                <TextHeadSetting>Delete Zone</TextHeadSetting>
+                <Btn
+                  onClick={clearWidgets}
+                  color='btn-danger'
+                  btnName='Delete all widgets'
+                />
+              </div>
+            </Settings>
+          </ModalCard>
+        )}
       </div>
     </>
   );
 }
+
+
+// clearWidgets;

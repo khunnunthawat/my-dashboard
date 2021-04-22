@@ -23,6 +23,7 @@ export default function FormJustSay({ onEditSubmit, list }) {
         <div className='flex-1 mr-1'>
           <input
             name='title'
+            defaultValue={list.value}
             type='text'
             className='w-full px-2.5 py-1 focus:outline-none rounded-md'
             placeholder='Enter text'

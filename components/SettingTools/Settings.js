@@ -1,7 +1,17 @@
 import React from 'react'
 import { TextHead } from '../Modals/TextHead';
 
-export default function Settings() {
+export default function Settings({ listAllWidgets, children }) {
+  
+  let totalWidgets = listAllWidgets.length;
+  let justSayLength = 0;
+
+  listAllWidgets.map((list) => {
+    if (list.type === 'justSay') {
+      justSayLength = justSayLength + list.value.length;
+    }
+  });
+
   return (
     <div>
       <TextHead>Settings</TextHead>
@@ -10,7 +20,7 @@ export default function Settings() {
         <div className='table'>
           <div className='table-row'>
             <div className='table-cell pr-4 font-semibold'>Total widgets: </div>
-            <div className='table-cell'>.</div>
+            <div className='table-cell'>{totalWidgets}</div>
           </div>
           <div className='table-row'>
             <div className='table-cell pr-4 font-semibold'>
@@ -28,7 +38,6 @@ export default function Settings() {
           </div>
         </div>
       </div>
-
       <div className='p-5 border-1 bg-white rounded-2xl relative mb-4'>
         <h2 className='text-lg font-bold text-gray-400 mb-1.5'>Reset Zone</h2>
         <div className='flex items-center'>
@@ -41,13 +50,7 @@ export default function Settings() {
           </button>
         </div>
       </div>
-
-      <div className='p-5 border-1 bg-white rounded-2xl relative mb-4'>
-        <h2 className='text-lg font-bold text-gray-400 mb-1.5'>Delete Zone</h2>
-        <button className='text-white focus:outline-none px-4 py-1 rounded-md bg-red-500 hover:bg-red-600 w-full mb-1'>
-          Delete all widgets
-        </button>
-      </div>
+      {children}
     </div>
   );
 }
