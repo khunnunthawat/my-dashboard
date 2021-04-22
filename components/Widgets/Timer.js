@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import Card from '../Layouts/Card';
+import { Card } from '../Layouts/Card';
 import Btn from '../Btn';
 
 export default function TimerTest({ title, list, onClickDelete = () => {} }) {

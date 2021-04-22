@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
-import ModalCard from '../Modals/ModalCard';
+import { ModalCard } from '../Modals/ModalCard';
 import WidgetMenuCard from './WidgetMenuCard';
 // icon
 import { RiAddCircleLine, RiIncreaseDecreaseLine } from 'react-icons/ri';

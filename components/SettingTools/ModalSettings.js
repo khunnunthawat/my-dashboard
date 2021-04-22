@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
 import { RiSettings3Line } from 'react-icons/ri';
-import ModalCard from '../Modals/ModalCard';
+import { ModalCard } from '../Modals/ModalCard';
 import Settings from './Settings';
 
 export default function ModalSettings() {

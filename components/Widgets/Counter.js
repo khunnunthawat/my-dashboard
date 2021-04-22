@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Card from '../Layouts/Card';
+import { Card } from '../Layouts/Card';
 import Btn from '../Btn';
 
 export default function Counter({ title, list, onClickDelete = () => {} }) {
