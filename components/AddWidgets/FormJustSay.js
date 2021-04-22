@@ -2,43 +2,56 @@ import React, { useState } from 'react';
 import Btn from '../Btn';
 
 export default function FormJustSay({
-  handleAddWidgets,
-  setTitleJustsay,
-  handleCancel,
-  listAllWidgets,
-  setListAllWidgets,
-  DateTime
+  // handleAddWidgets,
+  // setTitleJustsay,
+  // handleCancel,
+  // listAllWidgets,
+  // setListAllWidgets,
+  // DateTime
+  onAdd
 }) {
   const [checkError, setCheckError] = useState('');
 
+  // Refactor code จากพี่บุ๊คกับบน้องเปิ้ลแนะแนวทาง การส่งค่า
   const onSubmit = (e) => {
     e.preventDefault();
-    
+
     if (e.target.title.value.trim().length < 3) {
       setCheckError('Please enter at least 3 characters.');
       // console.log(e.target.title.value.length);
     } else {
-      setTitleJustsay(e.target.title.value.trim());
-      handleCancel();
-
-      let id;
-
-      if (listAllWidgets.length == 0) {
-        id = 1;
-      } else {
-        const lastArray = listAllWidgets.slice(-1).pop();
-        id = lastArray.id + 1;
-      }
-
-      const data = {
-        value: e.target.title.value.trim(),
-        id: id,
-        date: DateTime,
-        type: 'justSay'
-      };
-      setListAllWidgets([...listAllWidgets, data]);
+      onAdd('justSay', e.target.title.value.trim()); // เราใช้เพียงคำสั่งนี้ ส่งข้อมูล type, value กลับไปยัง handleAdd ใน WidgetTools
     }
   };
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (e.target.title.value.trim().length < 3) {
+  //     setCheckError('Please enter at least 3 characters.');
+  //     // console.log(e.target.title.value.length);
+  //   } else {
+  //     setTitleJustsay(e.target.title.value.trim());
+  //     handleCancel();
+
+  //     let id;
+
+  //     if (listAllWidgets.length == 0) {
+  //       id = 1;
+  //     } else {
+  //       const lastArray = listAllWidgets.slice(-1).pop();
+  //       id = lastArray.id + 1;
+  //     }
+
+  //     const data = {
+  //       value: e.target.title.value.trim(),
+  //       id: id,
+  //       date: DateTime,
+  //       type: 'justSay',
+  //     };
+  //     setListAllWidgets([...listAllWidgets, data]);
+  //   }
+  // };
 
   return (
     <>

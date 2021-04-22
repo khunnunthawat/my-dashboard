@@ -45,29 +45,51 @@ export default function WidgetContent() {
     setCouter();
   };
 
-  const handleClickTimer = function () {
-    setModalActiveMenu(false);
-    setTimer();
-    handleCancel();
-
+  /**
+   * ฟังก์ชัน handleClickAdd เราสามารถ Reuse ให้ Add widget อะไรก็ได้
+   * เพียงแค่ส่ง type กับ value เข้ามาจาก Add Widget แบบต่างๆ
+   * */
+  const handleClickAdd = function (type, value) {
     let id;
-
     if (listAllWidgets.length == 0) {
       id = 1;
     } else {
-      const lastArray = listAllWidgets.slice(-1).pop();
+      const lastArray = listAllWidgets.slice(-1).pop(); // .slice(-1).pop() เลือก array ตัวสุดท้ายมาให้
       id = lastArray.id + 1;
     }
-
     const data = {
-      value: '',
+      value,
       id: id,
       date: DateTime,
-      type: 'timer',
+      type,
     };
-
     setListAllWidgets([...listAllWidgets, data]);
+    handleCancel();
   };
+
+  // const handleClickTimer = function () {
+  //   setModalActiveMenu(false);
+  //   setTimer();
+  //   handleCancel();
+
+  //   let id;
+
+  //   if (listAllWidgets.length == 0) {
+  //     id = 1;
+  //   } else {
+  //     const lastArray = listAllWidgets.slice(-1).pop();
+  //     id = lastArray.id + 1;
+  //   }
+
+  //   const data = {
+  //     value: '',
+  //     id: id,
+  //     date: DateTime,
+  //     type: 'timer',
+  //   };
+
+  //   setListAllWidgets([...listAllWidgets, data]);
+  // };
 
   const handleCancel = function () {
     setModalActiveMenu(false);
@@ -166,7 +188,12 @@ export default function WidgetContent() {
               <WidgetMenuCard title='Counter' onClick={handleClickCounter}>
                 <RiIncreaseDecreaseLine className={`${iconClass}`} />
               </WidgetMenuCard>
-              <WidgetMenuCard title='Timer' onClick={handleClickTimer}>
+              <WidgetMenuCard
+                title='Timer'
+                onClick={() => {
+                  handleClickAdd('timer', '');
+                }}
+              >
                 <IoTimerOutline className={`${iconClass}`} />
               </WidgetMenuCard>
             </div>
@@ -176,12 +203,13 @@ export default function WidgetContent() {
         {modalActiveJustsay && (
           <ModalCard onCancel={handleCancel}>
             <FormJustSay
-              handleAddWidgets={handleAddWidgets}
-              setTitleJustsay={setTitleJustsay}
-              handleCancel={handleCancel}
-              listAllWidgets={listAllWidgets}
-              setListAllWidgets={setListAllWidgets}
-              DateTime={DateTime}
+              onAdd={handleClickAdd}
+              // handleAddWidgets={handleAddWidgets}
+              // setTitleJustsay={setTitleJustsay}
+              // handleCancel={handleCancel}
+              // listAllWidgets={listAllWidgets}
+              // setListAllWidgets={setListAllWidgets}
+              // DateTime={DateTime}
             />
           </ModalCard>
         )}
@@ -189,12 +217,13 @@ export default function WidgetContent() {
         {modalActiveCounter && (
           <ModalCard onCancel={handleCancel}>
             <FormCounter
-              handleAddWidgets={handleAddWidgets}
-              setCouter={setCouter}
-              handleCancel={handleCancel}
-              listAllWidgets={listAllWidgets}
-              setListAllWidgets={setListAllWidgets}
-              DateTime={DateTime}
+              onAdd={handleClickAdd}
+              // handleAddWidgets={handleAddWidgets}
+              // setCouter={setCouter}
+              // handleCancel={handleCancel}
+              // listAllWidgets={listAllWidgets}
+              // setListAllWidgets={setListAllWidgets}
+              // DateTime={DateTime}
             />
           </ModalCard>
         )}
