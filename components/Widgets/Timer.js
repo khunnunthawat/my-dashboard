@@ -50,6 +50,7 @@ export default function TimerTest({ title, list, onClickDelete = () => {} }) {
   };
 
   list.value = timer;
+  console.log(list.value);
 
   return (
     <Card title='Timer' onClickDelete={handleClick}>

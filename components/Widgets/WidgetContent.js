@@ -37,13 +37,11 @@ export default function WidgetContent() {
   const handleClickJustsay = function () {
     setModalActiveMenu(false);
     setModalActiveJustsay(true);
-    setTitleJustsay();
   };
 
   const handleClickCounter = function () {
     setModalActiveMenu(false);
     setModalActiveCounter(true);
-    setCouter();
   };
 
   /**
@@ -68,29 +66,30 @@ export default function WidgetContent() {
     handleCancel();
   };
 
-  // const handleClickTimer = function () {
-  //   setModalActiveMenu(false);
-  //   setTimer();
-  //   handleCancel();
+  // Update widgets state เป็นค่าใหม่
+  const onClickEdit = (newId, newValue) => {
+    let newListAllWidgets = [];
+    listAllWidgets.map((data) => {
+      if (data.id === newId) {
+        data.value = newValue;
+        // return newId;
+      }
+      newListAllWidgets.push(data);
+    });
 
-  //   let id;
+    setListAllWidgets(newListAllWidgets);
+  };
 
-  //   if (listAllWidgets.length == 0) {
-  //     id = 1;
-  //   } else {
-  //     const lastArray = listAllWidgets.slice(-1).pop();
-  //     id = lastArray.id + 1;
-  //   }
-
-  //   const data = {
-  //     value: '',
-  //     id: id,
-  //     date: DateTime,
-  //     type: 'timer',
-  //   };
-
-  //   setListAllWidgets([...listAllWidgets, data]);
-  // };
+  // // Update widgets state เป็นค่าใหม่
+  // setWidgets(
+  //   widgets.map((widget) => {
+  //     if (widget.id === updatedWidget.id) {
+  //       return updatedWidget; // คืน widget ที่ทำการอัปเดตค่าแล้ว
+  //     } else {
+  //       return widget; // คืน widget ของเดิม
+  //     }
+  //   })
+  // );
 
   const handleCancel = function () {
     setModalActiveMenu(false);
@@ -98,10 +97,6 @@ export default function WidgetContent() {
     setModalActiveCounter(false);
     setModalActiveSetting(false);
   };
-
-  // const handleClickSetting = function () {
-  //   setModalActiveSetting(true);
-  // };
 
   const handleClickDelete = function (list) {
     if (listAllWidgets.length > 0) {
@@ -128,9 +123,9 @@ export default function WidgetContent() {
         if (list.type === 'justSay') {
           return (
             <JustSay
+              onClickEdit={onClickEdit}
               onClickDelete={handleClickDelete}
               key={list.id}
-              title={titleJustsay}
               list={list}
             />
           );
@@ -139,7 +134,6 @@ export default function WidgetContent() {
             <Counter
               onClickDelete={handleClickDelete}
               key={list.id}
-              title={counter}
               list={list}
             />
           );
@@ -148,7 +142,6 @@ export default function WidgetContent() {
             <Timer
               onClickDelete={handleClickDelete}
               key={list.id}
-              title={timer}
               list={list}
             />
           );
@@ -208,11 +201,6 @@ export default function WidgetContent() {
           <Btn color='primary' onClick={handleClickMenu}>
             <RiAddCircleLine className={`${iconTool}`} /> Add Widget
           </Btn>{' '}
-          {/* {clearBtn} */}
-          {/* <Btn onClick={handleClickSetting} color='default'>
-            <RiSettings3Line className={`${iconTool}`} /> Settings หน้า
-            WidgetContent.js
-          </Btn> */}
           <ModalSettings />
         </div>
         <div className={`${flexClass}`}>{handleAddWidgets()}</div>
@@ -240,37 +228,15 @@ export default function WidgetContent() {
         {/* Modal_Justsay */}
         {modalActiveJustsay && (
           <ModalCard onCancel={handleCancel}>
-            <FormJustSay
-              onAdd={handleClickAdd}
-              // handleAddWidgets={handleAddWidgets}
-              // setTitleJustsay={setTitleJustsay}
-              // handleCancel={handleCancel}
-              // listAllWidgets={listAllWidgets}
-              // setListAllWidgets={setListAllWidgets}
-              // DateTime={DateTime}
-            />
+            <FormJustSay onAdd={handleClickAdd} />
           </ModalCard>
         )}
         {/* Modal_Counter */}
         {modalActiveCounter && (
           <ModalCard onCancel={handleCancel}>
-            <FormCounter
-              onAdd={handleClickAdd}
-              // handleAddWidgets={handleAddWidgets}
-              // setCouter={setCouter}
-              // handleCancel={handleCancel}
-              // listAllWidgets={listAllWidgets}
-              // setListAllWidgets={setListAllWidgets}
-              // DateTime={DateTime}
-            />
+            <FormCounter onAdd={handleClickAdd} />
           </ModalCard>
         )}
-        {/* Modal_Setting */}
-        {/* {modalActiveSetting && (
-          <ModalCard onCancel={handleCancel}>
-            <TextHead>Settings</TextHead>
-          </ModalCard>
-        )} */}
       </div>
     </>
   );

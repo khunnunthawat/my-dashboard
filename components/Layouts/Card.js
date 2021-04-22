@@ -29,9 +29,18 @@ export const Card = ({ title, children, onClickDelete = () => { } }) => {
   );
 }
 
-export const CardEdit = ({ title, children, onClickDelete = () => {} }) => {
+export const CardEdit = ({
+  title,
+  children,
+  onClickDelete,
+  onClickEdit
+}) => {
   const handleClick = function (e) {
     onClickDelete(e);
+  };
+
+  const handleClickEdit = function (e) {
+    onClickEdit(e);
   };
 
   return (
@@ -39,7 +48,7 @@ export const CardEdit = ({ title, children, onClickDelete = () => {} }) => {
       <div className={`${bgCard}`}>
         <h2 className={`${textCss}`}>{title}</h2>
         <div className={`${absCss}`}>
-          <button className={`${iconText} + mr-2`}>
+          <button className={`${iconText} + mr-2`} onClick={handleClickEdit}>
             <MdEdit />
           </button>
           <button className={`${iconText}`} onClick={handleClick}>
