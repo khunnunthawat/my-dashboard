@@ -45,7 +45,6 @@ export default function Settings() {
       <div className='p-5 border-1 bg-white rounded-2xl relative mb-4'>
         <h2 className='text-lg font-bold text-gray-400 mb-1.5'>Delete Zone</h2>
         <button className='text-white focus:outline-none px-4 py-1 rounded-md bg-red-500 hover:bg-red-600 w-full mb-1'>
-          {'{'}' '{'}'}
           Delete all widgets
         </button>
       </div>
