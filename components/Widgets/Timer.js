@@ -2,7 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Card } from '../Layouts/Card';
 import Btn from '../Btn';
 
-export default function TimerTest({ title, list, setZero, zero, onClickDelete = () => {} }) {
+export default function TimerTest({
+  title,
+  list,
+  setZero,
+  zero,
+  listAllWidgets,
+  setTotaltime,
+  onClickDelete = () => {},
+}) {
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -12,8 +20,28 @@ export default function TimerTest({ title, list, setZero, zero, onClickDelete = 
     if (zero === 'Timer') {
       setTimer(0);
       setZero('');
+      setIsActive(false);
     }
   }, [zero]);
+
+  useEffect(() => {
+    // แล้ว .map() ตำนวน list.value ที่เป็นวินาทีทั้งหมด แล้วเอาค่า มาคำนวน formatTime
+    const temp = [...listAllWidgets]
+      .map((data) => data.value)
+      .reduce((prev, next) => prev + next);
+    const totalTime = formatTime(temp);
+    setTotaltime(totalTime);
+  }, [timer]);
+
+  useEffect(() => {
+    let interval;
+    if (isActive) {
+      interval = setInterval(() => {
+        setTimer((timer) => timer + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isActive]);
 
   const handleClick = function () {
     onClickDelete(list);
@@ -23,41 +51,38 @@ export default function TimerTest({ title, list, setZero, zero, onClickDelete = 
 
   const handleStart = () => {
     setIsActive(true);
-    setIsPaused(true);
-    countRef.current = setInterval(() => {
-      setTimer((timer) => timer + 1);
-    }, 1000);
   };
 
   const handlePause = () => {
-    clearInterval(countRef.current);
-    setIsPaused(false);
+    setIsActive(false);
+    console.log(isActive);
   };
 
   const handleResume = () => {
     setIsPaused(true);
-    countRef.current = setInterval(() => {
-      setTimer((timer) => timer + 1);
-    }, 1000);
+    setIsActive(false);
+    // countRef.current = setInterval(() => {
+    //   setTimer((timer) => timer + 1);
+    // }, 1000);
   };
 
   const handleReset = () => {
-    clearInterval(countRef.current);
+    // clearInterval(countRef.current);
     setIsActive(false);
     setIsPaused(false);
     setTimer(0);
   };
 
-  const formatTime = () => {
-    const getSeconds = `0${timer % 60}`.slice(-2);
-    const minutes = `${Math.floor(timer / 60)}`;
+  const formatTime = (sec) => {
+    const getSeconds = `0${sec % 60}`.slice(-2);
+    const minutes = `${Math.floor(sec / 60)}`;
     const getMinutes = `0${minutes % 60}`.slice(-2);
 
     return `${getMinutes} : ${getSeconds}`;
   };
 
   list.value = timer;
-  console.log(list.value);
+  // console.log(list.value);
 
   return (
     <Card title='Timer' onClickDelete={handleClick}>
@@ -71,7 +96,7 @@ export default function TimerTest({ title, list, setZero, zero, onClickDelete = 
               <Btn disabled={!disabled} color='primary' btnName='Start' />
             </button>
           ) : isPaused ? (
-            <button onClick={handlePause}>
+            <button onClick={()=> setIsActive(false)}>
               <Btn color='primary' btnName='Pause' />
             </button>
           ) : (

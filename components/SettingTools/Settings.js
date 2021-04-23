@@ -3,8 +3,7 @@ import { TextHead, TextHeadTable } from '../Modals/TextHead';
 import SettingCard from './SettingCard';
 import Btn from '../Btn';
 
-export default function Settings({ listAllWidgets, children, setZero }) {
-  
+export default function Settings({ listAllWidgets, children, setZero, setTotaltime }) {
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
@@ -18,22 +17,14 @@ export default function Settings({ listAllWidgets, children, setZero }) {
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
     } else {
-      totalTimer = totalTimer + list.value;
+      totalTimer = totalTimer + setTotaltime;
     }
     console.log(list);
   });
 
   const onSubmit = function (e) {
     e.preventDefault(e);
-    setZero(e.target.selector.value)
-  };
-
-  const totalTimerFormat = () => {
-    const getSeconds = `0${timer % 60}`.slice(-2);
-    const minutes = `${Math.floor(timer / 60)}`;
-    const getMinutes = `0${minutes % 60}`.slice(-2);
-
-    return `${getMinutes} : ${getSeconds}`;
+    setZero(e.target.selector.value);
   };
 
   return (
@@ -46,9 +37,7 @@ export default function Settings({ listAllWidgets, children, setZero }) {
             {totalJustSay}
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
-          <TextHeadTable title='Total time: '>
-            <span>{totalTimerFormat}</span>
-          </TextHeadTable>
+          <TextHeadTable title='Total time: '>{totalTimer}</TextHeadTable>
         </div>
       </SettingCard>
 

@@ -34,6 +34,7 @@ export default function WidgetContent() {
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
   const [modalActiveSetting, setModalActiveSetting] = useState(false);
   const [zero, setZero] = useState('');
+  const [totalTime, setTotaltime] = useState('');
 
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
@@ -147,6 +148,9 @@ export default function WidgetContent() {
               list={list}
               setZero={setZero}
               zero={zero}
+              listAllWidgets={listAllWidgets}
+              setTotaltime={setTotaltime}
+              totalTime={totalTime}
             />
           );
         }
@@ -234,6 +238,7 @@ export default function WidgetContent() {
             <Settings
               listAllWidgets={listAllWidgets}
               setZero={setZero}
+              setTotaltime={setTotaltime}
             >
               <SettingCard title='Delete Zone'>
                 <Btn
