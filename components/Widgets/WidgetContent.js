@@ -18,7 +18,7 @@ import Counter from './Counter';
 import Timer from './Timer';
 
 // Settings
-// import ModalSettings from '../SettingTools/ModalSettings';
+import SettingCard from '../SettingTools/SettingCard';
 import Settings from '../SettingTools/Settings';
 import { TextHeadSetting } from '../Modals/TextHead';
 
@@ -258,14 +258,13 @@ export default function WidgetContent() {
         {modalActiveSetting && (
           <ModalCard onCancel={handleCancel}>
             <Settings listAllWidgets={listAllWidgets}>
-              <div className='p-5 border-1 bg-white rounded-2xl relative mb-4'>
-                <TextHeadSetting>Delete Zone</TextHeadSetting>
+              <SettingCard title='Delete Zone'>
                 <Btn
                   onClick={clearWidgets}
                   color='btn-danger'
                   btnName='Delete all widgets'
                 />
-              </div>
+              </SettingCard>
             </Settings>
           </ModalCard>
         )}
