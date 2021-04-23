@@ -3,15 +3,15 @@ import { Card } from '../Layouts/Card';
 import Btn from '../Btn';
 
 export default function Counter({ title, list, setZero, zero, onClickDelete = () => {} }) {
-  const [count, setCount] = useState(list.value);
   
+  const [count, setCount] = useState(list.value);
  
-  useEffect(()=>{
-    if(zero === 'Counter') {
-      setCount(0)
-      setZero('')
+  useEffect(() => {
+    if (zero === 'Counter') {
+      setCount(0);
+      setZero('');
     }
-  },[zero])
+  }, [zero]);
 
   const handleClick = function () {
     onClickDelete(list);
