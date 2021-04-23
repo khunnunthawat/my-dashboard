@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '../Layouts/Card';
 import Btn from '../Btn';
 
-export default function Counter({ title, list, onClickDelete = () => {} }) {
+export default function Counter({ title, list, setZero, zero, onClickDelete = () => {} }) {
   const [count, setCount] = useState(list.value);
+  
+ 
+  useEffect(()=>{
+    if(zero === 'Counter') {
+      setCount(0)
+      setZero('')
+    }
+  },[zero])
 
   const handleClick = function () {
     onClickDelete(list);

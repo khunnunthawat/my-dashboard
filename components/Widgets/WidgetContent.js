@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import Btn from '../Btn';
 
 // icon
-import { RiAddCircleLine, RiIncreaseDecreaseLine, RiSettings3Line } from 'react-icons/ri';
+import {
+  RiAddCircleLine,
+  RiIncreaseDecreaseLine,
+  RiSettings3Line,
+} from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
 import { TextHead } from '../Modals/TextHead';
@@ -29,6 +33,7 @@ export default function WidgetContent() {
   const [modalActiveJustsay, setModalActiveJustsay] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
   const [modalActiveSetting, setModalActiveSetting] = useState(false);
+  const [zero, setZero] = useState('');
 
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
@@ -130,6 +135,8 @@ export default function WidgetContent() {
               onClickDelete={handleClickDelete}
               key={list.id}
               list={list}
+              setZero={setZero}
+              zero={zero}
             />
           );
         } else if (list.type === 'timer') {
@@ -222,7 +229,7 @@ export default function WidgetContent() {
         {/* Modal_Settings */}
         {modalActiveSetting && (
           <ModalCard onCancel={handleCancel}>
-            <Settings listAllWidgets={listAllWidgets}>
+            <Settings listAllWidgets={listAllWidgets} setZero={setZero}>
               <SettingCard title='Delete Zone'>
                 <Btn
                   onClick={clearWidgets}
@@ -237,6 +244,5 @@ export default function WidgetContent() {
     </>
   );
 }
-
 
 // clearWidgets;
