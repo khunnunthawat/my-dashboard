@@ -239,7 +239,8 @@ export default function WidgetContent() {
             <Settings
               listAllWidgets={listAllWidgets}
               setZero={setZero}
-              totalTime={totalTime}  // realtime_show
+              totalTime={totalTime} // realtime_show
+              setTotaltime={setTotaltime}
             >
               <SettingCard title='Delete Zone'>
                 <Btn

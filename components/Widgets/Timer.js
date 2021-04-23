@@ -9,6 +9,7 @@ export default function TimerTest({
   zero,
   listAllWidgets,
   setTotaltime,
+  totalTime,
   onClickDelete = () => {},
 }) {
   const [timer, setTimer] = useState(0);
@@ -30,6 +31,7 @@ export default function TimerTest({
       .map((data) => data.value)
       .reduce((prev, next) => prev + next);
     const totalTime = formatTime(temp);
+    console.log(formatTime(temp));
     setTotaltime(totalTime);
   }, [timer]);
 
@@ -51,16 +53,17 @@ export default function TimerTest({
 
   const handleStart = () => {
     setIsActive(true);
+    setIsPaused(true);
   };
 
   const handlePause = () => {
     setIsActive(false);
+    setIsPaused(false);
     console.log(isActive);
   };
 
   const handleResume = () => {
     setIsPaused(true);
-    setIsActive(false);
     // countRef.current = setInterval(() => {
     //   setTimer((timer) => timer + 1);
     // }, 1000);
@@ -96,7 +99,7 @@ export default function TimerTest({
               <Btn disabled={!disabled} color='primary' btnName='Start' />
             </button>
           ) : isPaused ? (
-            <button onClick={()=> setIsActive(false)}>
+            <button onClick={handlePause}>
               <Btn color='primary' btnName='Pause' />
             </button>
           ) : (
@@ -105,7 +108,7 @@ export default function TimerTest({
             </button>
           )}
           <button onClick={handleReset}>
-            <Btn color='primary' btnName='Reset' />
+            <Btn color='default' btnName='Reset' />
           </button>
         </>
       </div>

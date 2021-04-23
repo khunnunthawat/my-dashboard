@@ -3,7 +3,13 @@ import { TextHead, TextHeadTable } from '../Modals/TextHead';
 import SettingCard from './SettingCard';
 import Btn from '../Btn';
 
-export default function Settings({ listAllWidgets, children, setZero }) {
+export default function Settings({
+  listAllWidgets,
+  children,
+  setZero,
+  setTotaltime,
+  totalTime,
+}) {
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
@@ -18,6 +24,7 @@ export default function Settings({ listAllWidgets, children, setZero }) {
       totalCounter = totalCounter + list.value;
     } else {
       totalTimer = totalTimer + list.value;
+      // console.log(totalTimer);
     }
   });
 
