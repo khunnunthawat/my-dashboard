@@ -3,13 +3,13 @@ import { TextHead, TextHeadTable } from '../Modals/TextHead';
 import SettingCard from './SettingCard';
 import Btn from '../Btn';
 
-export default function Settings({ listAllWidgets, children, setZero, setTotaltime }) {
+export default function Settings({ listAllWidgets, children, setZero }) {
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
   let totalTimer = 0;
 
-  console.log('Total widgets: ' + totalWidgets);
+  // console.log('Total widgets: ' + totalWidgets);
 
   listAllWidgets.map((list) => {
     if (list.type === 'justSay') {
@@ -17,9 +17,8 @@ export default function Settings({ listAllWidgets, children, setZero, setTotalti
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
     } else {
-      totalTimer = totalTimer + setTotaltime;
+      totalTimer = totalTimer + list.value;
     }
-    console.log(list);
   });
 
   const onSubmit = function (e) {
