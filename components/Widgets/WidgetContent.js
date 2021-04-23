@@ -103,9 +103,9 @@ export default function WidgetContent() {
 
   // DateTimeNow
   let d = new Date();
-  let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
-  let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-  let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  // let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
+  // let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+  // let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
   var n = d.toLocaleString([], { hour12: true });
 
   let DateTime = `Added on ${n}`;
