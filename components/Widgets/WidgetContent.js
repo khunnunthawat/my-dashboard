@@ -145,6 +145,8 @@ export default function WidgetContent() {
               onClickDelete={handleClickDelete}
               key={list.id}
               list={list}
+              setZero={setZero}
+              zero={zero}
             />
           );
         }

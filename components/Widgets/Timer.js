@@ -1,12 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Card } from '../Layouts/Card';
 import Btn from '../Btn';
 
-export default function TimerTest({ title, list, onClickDelete = () => {} }) {
+export default function TimerTest({ title, list, setZero, zero, onClickDelete = () => {} }) {
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const countRef = useRef(null);
+
+  useEffect(() => {
+    if (zero === 'Timer') {
+      setTimer(0);
+      setZero('');
+    }
+  }, [zero]);
 
   const handleClick = function () {
     onClickDelete(list);

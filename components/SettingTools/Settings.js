@@ -7,12 +7,15 @@ export default function Settings({ listAllWidgets, children, setZero }) {
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
+  let totalTimer = 0;
 
   listAllWidgets.map((list) => {
     if (list.type === 'justSay') {
       totalJustSay = totalJustSay + list.value.length;
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
+    } else {
+      totalTimer = totalTimer + list.value;
     }
     console.log(list);
   });
@@ -20,6 +23,14 @@ export default function Settings({ listAllWidgets, children, setZero }) {
   const onSubmit = function (e) {
     e.preventDefault(e);
     setZero(e.target.selector.value)
+  };
+
+  const totalTimerFormat = () => {
+    const getSeconds = `0${timer % 60}`.slice(-2);
+    const minutes = `${Math.floor(timer / 60)}`;
+    const getMinutes = `0${minutes % 60}`.slice(-2);
+
+    return `${getMinutes} : ${getSeconds}`;
   };
 
   return (
@@ -32,7 +43,9 @@ export default function Settings({ listAllWidgets, children, setZero }) {
             {totalJustSay}
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
-          <TextHeadTable title='Total time: '>00:00</TextHeadTable>
+          <TextHeadTable title='Total time: '>
+            <span>{totalTimerFormat}</span>
+          </TextHeadTable>
         </div>
       </SettingCard>
 
