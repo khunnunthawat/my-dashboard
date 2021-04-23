@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import Btn from '../Btn';
 
 export default function FormCounter({
-  // handleAddWidgets,
-  // setCouter,
-  // handleCancel,
-  // listAllWidgets,
-  // setListAllWidgets,
-  // DateTime
   onAdd
 }) {
   const [checkError, setCheckError] = useState('');
@@ -23,36 +17,6 @@ export default function FormCounter({
       onAdd('counter', Number(e.target.title.value)); // เราใช้เพียงคำสั่งนี้ ส่งข้อมูล type, value กลับไปยัง handleAdd ใน WidgetTools
     }
   };
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (Number(e.target.title.value) < 1) {
-  //     setCheckError('Please enter at least 0.');
-  //     // console.log(e.target.count.value.length);
-  //   } else {
-  //     setCouter(Number(e.target.title.value));
-  //     handleCancel();
-
-  //     let id;
-
-  //     if (listAllWidgets.length == 0) {
-  //       id = 1;
-  //     } else {
-  //       const lastArray = listAllWidgets.slice(-1).pop();
-  //       id = lastArray.id + 1;
-  //     }
-
-  //     const data = {
-  //       value: Number(e.target.title.value),
-  //       id: id,
-  //       date: DateTime,
-  //       type: 'counter',
-  //     };
-  //     // console.log('value = ', data.value);
-  //     setListAllWidgets([...listAllWidgets, data]);
-  //   }
-  // };
 
   return (
     <>

@@ -229,7 +229,10 @@ export default function WidgetContent() {
         {/* Modal_Settings */}
         {modalActiveSetting && (
           <ModalCard onCancel={handleCancel}>
-            <Settings listAllWidgets={listAllWidgets} setZero={setZero}>
+            <Settings
+              listAllWidgets={listAllWidgets}
+              setZero={setZero}
+            >
               <SettingCard title='Delete Zone'>
                 <Btn
                   onClick={clearWidgets}
@@ -244,5 +247,3 @@ export default function WidgetContent() {
     </>
   );
 }
-
-// clearWidgets;
