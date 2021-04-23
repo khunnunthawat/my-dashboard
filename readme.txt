@@ -78,3 +78,59 @@
   cheatsheet tailwind css
   Link : https://tailwindcomponents.com/cheatsheet/
 ###
+
+###
+  // Clear widget
+  // const clearWidgets = () => {
+  //   // clear all history
+  //   setListAllWidgets([]);
+  // };
+
+  // let colorTool = false;
+
+  // let clearBtn = (
+  //   <Btn onClick={clearWidgets} colorTool={colorTool}>
+  //     <RiSettings3Line className={`${iconTool}`} /> Settings
+  //   </Btn>
+  // );
+  // if (listAllWidgets.length > 0) {
+  //   clearBtn = (
+  //     <Btn onClick={clearWidgets} colorTool={!colorTool}>
+  //       <RiSettings3Line className={`${iconTool}`} /> Settings
+  //     </Btn>
+  //   );
+  // }
+###
+
+###
+  // Update widgets state เป็นค่าใหม่
+  const onClickEdit = (newId, newValue) => {
+    let newListAllWidgets = [];
+    listAllWidgets.map((data) => {
+      if (data.id === newId) {
+        data.value = newValue;
+        // return newId;
+      }
+      newListAllWidgets.push(data);
+    });
+
+    setListAllWidgets(newListAllWidgets);
+  };
+
+  // // Update widgets state เป็นค่าใหม่
+  // setWidgets(
+  //   widgets.map((widget) => {
+  //     if (widget.id === updatedWidget.id) {
+  //       return updatedWidget; // คืน widget ที่ทำการอัปเดตค่าแล้ว
+  //     } else {
+  //       return widget; // คืน widget ของเดิม
+  //     }
+  //   })
+  // );
+###
+
+###
+  // const [titleJustsay, setTitleJustsay] = useState('');
+  // const [counter, setCouter] = useState('');
+  // const [timer, setTimer] = useState('');
+###

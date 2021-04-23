@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
-import { ModalCard } from '../Modals/ModalCard';
-import WidgetMenuCard from './WidgetMenuCard';
+
 // icon
 import { RiAddCircleLine, RiIncreaseDecreaseLine, RiSettings3Line } from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
@@ -12,7 +11,11 @@ import { TextHead } from '../Modals/TextHead';
 import FormCounter from '../AddWidgets/FormCounter';
 import FormJustSay from '../AddWidgets/FormJustSay';
 
-// Layout
+// Layout_Card
+import { ModalCard } from '../Modals/ModalCard';
+import WidgetMenuCard from './WidgetMenuCard';
+
+// Widgets_Card
 import JustSay from './JustSay';
 import Counter from './Counter';
 import Timer from './Timer';
@@ -20,17 +23,12 @@ import Timer from './Timer';
 // Settings
 import SettingCard from '../SettingTools/SettingCard';
 import Settings from '../SettingTools/Settings';
-import { TextHeadSetting } from '../Modals/TextHead';
 
 export default function WidgetContent() {
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
   const [modalActiveJustsay, setModalActiveJustsay] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
   const [modalActiveSetting, setModalActiveSetting] = useState(false);
-
-  const [titleJustsay, setTitleJustsay] = useState('');
-  const [counter, setCouter] = useState('');
-  const [timer, setTimer] = useState('');
 
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
@@ -87,17 +85,6 @@ export default function WidgetContent() {
 
     setListAllWidgets(newListAllWidgets);
   };
-
-  // // Update widgets state เป็นค่าใหม่
-  // setWidgets(
-  //   widgets.map((widget) => {
-  //     if (widget.id === updatedWidget.id) {
-  //       return updatedWidget; // คืน widget ที่ทำการอัปเดตค่าแล้ว
-  //     } else {
-  //       return widget; // คืน widget ของเดิม
-  //     }
-  //   })
-  // );
 
   const handleCancel = function () {
     setModalActiveMenu(false);
@@ -180,33 +167,11 @@ export default function WidgetContent() {
     // clear all history
     setListAllWidgets([]);
   };
-  
 
   // CSS icon
   let iconTool = 'inline-block text-xl relative -top-0.5';
   let iconClass = 'mx-auto text-4xl';
   let flexClass = 'md:flex md:flex-wrap md:-mr-4';
-
-  // Clear widget
-  // const clearWidgets = () => {
-  //   // clear all history
-  //   setListAllWidgets([]);
-  // };
-
-  // let colorTool = false;
-
-  // let clearBtn = (
-  //   <Btn onClick={clearWidgets} colorTool={colorTool}>
-  //     <RiSettings3Line className={`${iconTool}`} /> Settings
-  //   </Btn>
-  // );
-  // if (listAllWidgets.length > 0) {
-  //   clearBtn = (
-  //     <Btn onClick={clearWidgets} colorTool={!colorTool}>
-  //       <RiSettings3Line className={`${iconTool}`} /> Settings
-  //     </Btn>
-  //   );
-  // }
 
   return (
     <>
