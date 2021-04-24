@@ -13,7 +13,7 @@ export default function Settings({
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
-  let totalTimer = 0;
+  // let totalTimer = 0;
 
   // console.log('Total widgets: ' + totalWidgets);
 
@@ -22,10 +22,11 @@ export default function Settings({
       totalJustSay = totalJustSay + list.value.length;
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
-    } else {
-      totalTimer = totalTimer + list.value;
-      // console.log(totalTimer);
     }
+    //  else {
+    //   totalTimer = totalTimer + list.value;
+    //   // console.log(totalTimer, "in Settings");
+    // }
   });
 
   const onSubmit = function (e) {
@@ -43,7 +44,7 @@ export default function Settings({
             {totalJustSay}
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
-          <TextHeadTable title='Total time: '>{totalTimer}</TextHeadTable>
+          <TextHeadTable title='Total time: '>{totalTime}</TextHeadTable>
         </div>
       </SettingCard>
 

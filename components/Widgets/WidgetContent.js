@@ -241,6 +241,7 @@ export default function WidgetContent() {
               setZero={setZero}
               totalTime={totalTime} // realtime_show
               setTotaltime={setTotaltime}
+              onCancel={handleCancel}
             >
               <SettingCard title='Delete Zone'>
                 <Btn
