@@ -57,6 +57,22 @@ export default function WidgetContent() {
     setModalActiveSetting(true);
   };
 
+  const handleCancel = function () {
+    setModalActiveMenu(false);
+    setModalActiveJustsay(false);
+    setModalActiveCounter(false);
+    setModalActiveSetting(false);
+  };
+
+  // DateTimeNow
+  let d = new Date();
+  // let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
+  // let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+  // let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+  var n = d.toLocaleString([], { hour12: true });
+
+  let DateTime = `Added on ${n}`;
+
   /**
    * ฟังก์ชัน handleClickAdd เราสามารถ Reuse ให้ Add widget อะไรก็ได้
    * เพียงแค่ส่ง type กับ value เข้ามาจาก Add Widget แบบต่างๆ
@@ -93,13 +109,7 @@ export default function WidgetContent() {
     setListAllWidgets(newListAllWidgets);
   };
 
-  const handleCancel = function () {
-    setModalActiveMenu(false);
-    setModalActiveJustsay(false);
-    setModalActiveCounter(false);
-    setModalActiveSetting(false);
-  };
-
+  // Delete widgets state
   const handleClickDelete = function (list) {
     if (listAllWidgets.length > 0) {
       setListAllWidgets(
@@ -108,16 +118,7 @@ export default function WidgetContent() {
     }
   };
 
-  // DateTimeNow
-  let d = new Date();
-  // let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
-  // let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-  // let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-  var n = d.toLocaleString([], { hour12: true });
-
-  let DateTime = `Added on ${n}`;
-
-  // handleAddWidgets
+  // Create widgets state
   const handleAddWidgets = function () {
     if (listAllWidgets.length > 0) {
       // console.log(listAllWidgets);
