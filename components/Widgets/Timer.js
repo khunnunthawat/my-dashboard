@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '../Layouts/Card';
 import Btn from '../Btn';
 
@@ -15,7 +15,7 @@ export default function TimerTest({
   const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const countRef = useRef(null);
+  // const countRef = useRef(null);
 
   useEffect(() => {
     if (zero === 'Timer') {
@@ -49,24 +49,21 @@ export default function TimerTest({
     onClickDelete(list);
   };
 
-  let disabled = true;
-
   const handleStart = () => {
     setIsActive(true);
     setIsPaused(true);
+    console.log(handleStart);
   };
 
   const handlePause = () => {
     setIsActive(false);
-    setIsPaused(false);
-    console.log(isActive);
+    setIsPaused(true);
+    console.log(handlePause);
   };
 
   const handleResume = () => {
     setIsPaused(true);
-    // countRef.current = setInterval(() => {
-    //   setTimer((timer) => timer + 1);
-    // }, 1000);
+    console.log(handleResume);
   };
 
   const handleReset = () => {
@@ -74,6 +71,7 @@ export default function TimerTest({
     setIsActive(false);
     setIsPaused(false);
     setTimer(0);
+    console.log(handleReset);
   };
 
   const formatTime = (sec) => {
@@ -94,11 +92,11 @@ export default function TimerTest({
           <div className='text-6xl mx-7'>{formatTime(timer)}</div>
         </div>
         <>
-          {!isActive && !isPaused ? (
+          {/* {!isActive && !isPaused ? (
             <Btn
               onClick={handleStart}
-              color='primary'
               disabled={!disabled}
+              color='primary'
               btnName='Start'
             />
           ) : isPaused ? (
@@ -108,8 +106,26 @@ export default function TimerTest({
           )}
           <Btn
             onClick={handleReset}
-            color='default'
+            disabled={disabled}
+            color='primary'
             btnName='Reset'
+          /> */}
+          {!isActive && !isPaused ? (
+            <Btn
+              onClick={handleStart}
+              btnName='Start'
+              color='primary'
+            />
+          ) : isPaused ? (
+            <Btn onClick={handlePause} btnName='Pause' color='primary' />
+          ) : (
+            <Btn onClick={handleResume} btnName='Resume' color='primary' />
+          )}
+          <Btn
+            onClick={handleReset}
+            disabled={!isActive}
+            btnName='Reset'
+            color='primary'
           />
         </>
       </div>

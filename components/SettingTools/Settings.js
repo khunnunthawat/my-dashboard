@@ -7,7 +7,7 @@ export default function Settings({
   listAllWidgets,
   children,
   // setZero,
-  // setTotaltime,
+  setTotaltime,
   totalTime
 }) {
   let totalWidgets = listAllWidgets.length;

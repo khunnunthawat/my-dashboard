@@ -194,6 +194,8 @@ export default function WidgetContent() {
   let iconTool = 'inline-block text-xl relative -top-0.5';
   let iconClass = 'mx-auto text-4xl';
   let flexClass = 'md:flex md:flex-wrap md:-mr-4';
+  let selectClass =
+    'flex-1 mt-1 mr-1.5 py-1.5 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 text-sm';
 
   return (
     <>
@@ -254,10 +256,7 @@ export default function WidgetContent() {
               <SettingCard title='Reset Zone'>
                 <form onSubmit={onSubmit}>
                   <div className='flex items-center'>
-                    <select
-                      name='selector'
-                      className='flex-1 mt-1 mr-1.5 py-1.5 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 text-sm'
-                    >
+                    <select name='selector' className={`${selectClass}`}>
                       <option value='Counter'>All counters</option>
                       <option value='Timer'>All timers</option>
                     </select>
