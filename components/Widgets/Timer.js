@@ -57,16 +57,18 @@ export default function TimerTest({
 
   const handlePause = () => {
     setIsActive(false);
-    setIsPaused(true);
+    setIsPaused(false);
     console.log(handlePause);
   };
 
   const handleResume = () => {
+    setIsActive(true);
     setIsPaused(true);
     console.log(handleResume);
   };
 
   const handleReset = () => {
+    setIsActive(false);
     setIsPaused(false);
     setTimer(0);
     console.log(handleReset);
@@ -80,6 +82,7 @@ export default function TimerTest({
     return `${getMinutes} : ${getSeconds}`;
   };
 
+  let disabled = true;
   list.value = timer;
   // console.log(list.value);
 
@@ -109,11 +112,7 @@ export default function TimerTest({
             btnName='Reset'
           /> */}
           {!isActive && !isPaused ? (
-            <Btn
-              onClick={handleStart}
-              btnName='Start'
-              color='primary'
-            />
+            <Btn onClick={handleStart} btnName='Start' color='primary' />
           ) : isPaused ? (
             <Btn onClick={handlePause} btnName='Pause' color='primary' />
           ) : (
