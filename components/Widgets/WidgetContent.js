@@ -33,7 +33,7 @@ export default function WidgetContent() {
   const [modalActiveJustsay, setModalActiveJustsay] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
   const [modalActiveSetting, setModalActiveSetting] = useState(false);
-  
+
   const [zero, setZero] = useState('');
   const [totalTime, setTotaltime] = useState('');
 
@@ -176,6 +176,13 @@ export default function WidgetContent() {
     }
   };
 
+  // SetZero value
+  const onSubmit = function (e) {
+    e.preventDefault(e);
+    setZero(e.target.selector.value);
+    setModalActiveSetting(false);
+  };
+
   // Clear widget
   const clearWidgets = () => {
     // clear all history
@@ -237,12 +244,26 @@ export default function WidgetContent() {
         {modalActiveSetting && (
           <ModalCard onCancel={handleCancel}>
             <Settings
+              onCancel={handleCancel}
               listAllWidgets={listAllWidgets}
               setZero={setZero}
               totalTime={totalTime} // realtime_show
               setTotaltime={setTotaltime}
-              onCancel={handleCancel}
             >
+              <SettingCard title='Reset Zone'>
+                <form onSubmit={onSubmit}>
+                  <div className='flex items-center'>
+                    <select
+                      name='selector'
+                      className='flex-1 mt-1 mr-1.5 py-1.5 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 text-sm'
+                    >
+                      <option value='Counter'>All counters</option>
+                      <option value='Timer'>All timers</option>
+                    </select>
+                    <Btn colorTool='colorTool' btnName='Set zero' />
+                  </div>
+                </form>
+              </SettingCard>
               <SettingCard title='Delete Zone'>
                 <Btn
                   onClick={clearWidgets}

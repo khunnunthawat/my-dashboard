@@ -1,14 +1,14 @@
 import React from 'react';
 import { TextHead, TextHeadTable } from '../Modals/TextHead';
 import SettingCard from './SettingCard';
-import Btn from '../Btn';
+// import Btn from '../Btn';
 
 export default function Settings({
   listAllWidgets,
   children,
-  setZero,
-  setTotaltime,
-  totalTime,
+  // setZero,
+  // setTotaltime,
+  totalTime
 }) {
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
@@ -29,10 +29,10 @@ export default function Settings({
     // }
   });
 
-  const onSubmit = function (e) {
-    e.preventDefault(e);
-    setZero(e.target.selector.value);
-  };
+  // const onSubmit = function (e) {
+  //   e.preventDefault(e);
+  //   setZero(e.target.selector.value);
+  // };
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function Settings({
         </div>
       </SettingCard>
 
-      <SettingCard title='Reset Zone'>
+      {/* <SettingCard title='Reset Zone'>
         <form onSubmit={onSubmit}>
           <div className='flex items-center'>
             <select
@@ -58,10 +58,13 @@ export default function Settings({
               <option value='Counter'>All counters</option>
               <option value='Timer'>All timers</option>
             </select>
-            <Btn colorTool='colorTool' btnName='Set zero' />
+            <Btn
+              colorTool='colorTool'
+              btnName='Set zero'
+            />
           </div>
         </form>
-      </SettingCard>
+      </SettingCard> */}
       {children}
     </>
   );

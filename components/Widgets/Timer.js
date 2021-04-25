@@ -97,8 +97,8 @@ export default function TimerTest({
           {!isActive && !isPaused ? (
             <Btn
               onClick={handleStart}
-              disabled={!disabled}
               color='primary'
+              disabled={!disabled}
               btnName='Start'
             />
           ) : isPaused ? (
@@ -106,7 +106,11 @@ export default function TimerTest({
           ) : (
             <Btn onClick={handleResume} color='primary' btnName='Resume' />
           )}
-          <Btn onClick={handleReset} color='default' btnName='Reset' />
+          <Btn
+            onClick={handleReset}
+            color='default'
+            btnName='Reset'
+          />
         </>
       </div>
       <div className='text-xs text-gray-400'>
