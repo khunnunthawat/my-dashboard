@@ -67,8 +67,6 @@ export default function TimerTest({
   };
 
   const handleReset = () => {
-    // clearInterval(countRef.current);
-    setIsActive(false);
     setIsPaused(false);
     setTimer(0);
     console.log(handleReset);
