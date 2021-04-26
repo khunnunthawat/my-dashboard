@@ -23,10 +23,6 @@ export default function Settings({
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
     }
-    //  else {
-    //   totalTimer = totalTimer + list.value;
-    //   // console.log(totalTimer, "in Settings");
-    // }
   });
 
   // const onSubmit = function (e) {
