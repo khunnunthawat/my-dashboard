@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
+import { TextHeadWidget } from '../Modals/TextHead';
 
 export default function FormCounter({
   onAdd
 }) {
   const [checkError, setCheckError] = useState('');
 
-  // Refactor code จากพี่บุ๊คกับบน้องเปิ้ลแนะแนวทาง การส่งค่า
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -14,13 +14,13 @@ export default function FormCounter({
       setCheckError('Please enter at least 0.');
       // console.log(e.target.count.value.length);
     } else {
-      onAdd('counter', Number(e.target.title.value)); // เราใช้เพียงคำสั่งนี้ ส่งข้อมูล type, value กลับไปยัง handleAdd ใน WidgetTools
+      onAdd('counter', Number(e.target.title.value));
     }
   };
 
   return (
     <>
-      <h2 className='text-xl mb-2'>Add Counter</h2>
+      <TextHeadWidget title='Add Counter' />
       <form onSubmit={onSubmit} className='flex'>
         <div className='flex-1 mr-1'>
           <input

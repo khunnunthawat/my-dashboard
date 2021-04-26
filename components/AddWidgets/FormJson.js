@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
+import { TextHeadWidget } from '../Modals/TextHead';
 
 export default function FormJson({ onAdd }) {
   const [checkError, setCheckError] = useState('');
 
-  // Refactor code จากพี่บุ๊คกับบน้องเปิ้ลแนะแนวทาง การส่งค่า
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -12,13 +12,13 @@ export default function FormJson({ onAdd }) {
       setCheckError('Please enter url : JSON');
       // console.log(e.target.url.value.length);
     } else {
-      onAdd('justSay', e.target.url.value.trim()); // เราใช้เพียงคำสั่งนี้ ส่งข้อมูล type, value กลับไปยัง handleAdd ใน WidgetTools
+      onAdd('justSay', e.target.url.value.trim());
     }
   };
 
   return (
     <>
-      <h2 className='text-xl mb-2'>Add JSON</h2>
+      <TextHeadWidget title='Add JSON' />
       <form onSubmit={onSubmit} className='flex'>
         <div className='flex-1 mr-1'>
           <input

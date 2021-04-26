@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
+import { TextAddWidget } from '../Modals/TextHead';
 
 export default function FormJust({ onEditSubmit, list, title }) {
   const [checkError, setCheckError] = useState('');
 
-  // Refactor code จากพี่บุ๊คกับบน้องเปิ้ลแนะแนวทาง การส่งค่า
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(e.preventDefault());

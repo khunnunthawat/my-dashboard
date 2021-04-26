@@ -12,3 +12,7 @@ export const TextHeadTable = ({ title, children }) => (
     <div className='table-cell'>{children}</div>
   </div>
 );
+
+export const TextHeadWidget = ({ title }) => (
+  <h2 className='text-xl mb-2'>{title}</h2>
+);

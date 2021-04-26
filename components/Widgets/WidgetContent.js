@@ -175,6 +175,7 @@ export default function WidgetContent() {
         listAllWidgets.filter((widget) => widget.id !== list.id)
       );
     }
+    setDefaultValueShout('');
   };
 
   // Create widgets state
@@ -256,6 +257,7 @@ export default function WidgetContent() {
   const clearWidgets = () => {
     // clear all history
     setListAllWidgets([]);
+    setDefaultValueShout('');
   };
 
   // CSS icon

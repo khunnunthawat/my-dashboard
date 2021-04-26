@@ -46,15 +46,6 @@ export default function Settings({
     }
   };
 
-  // SetZero value
-  // const onSubmitZero = function (e) {
-  //   e.preventDefault(e);
-  //   setZero(e.target.selector.value);
-  // };
-
-  // let selectClass =
-  //   'flex-1 mt-1 mr-1.5 py-1.5 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 text-sm';
-
   return (
     <>
       <TextHead>Settings</TextHead>
