@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CardEdit } from '../Layouts/Card';
-import EditJust from '../AddWidgets/EditJust';
+import EditForm from '../AddWidgets/EditForm';
 import { ModalCard } from '../Modals/ModalCard';
 
 export default function JustShout({ list, onClickEditJustShout, onClickDelete }) {
@@ -27,7 +27,7 @@ export default function JustShout({ list, onClickEditJustShout, onClickDelete })
     <>
       {modalActiveEdit && (
         <ModalCard onCancel={handleCancel}>
-          <EditJust title='JustShout' onEditSubmit={onEditSubmit} list={list} />
+          <EditForm title='JustShout' onEditSubmit={onEditSubmit} list={list} />
         </ModalCard>
       )}
       <CardEdit

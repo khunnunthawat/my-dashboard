@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextHead, TextHeadTable } from '../Modals/TextHead';
+import { TextHead, TextHeadTable, TextError } from '../Modals/TextHead';
 import SettingCard from './SettingCard';
 import Btn from '../Btn';
 
@@ -11,31 +11,37 @@ export default function Settings({
   totalTime,
   defaultValueShout,
   onEditJustShout,
+  clearWidgets,
 }) {
-
   const [checkError, setCheckError] = useState('');
 
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
-  // let totalTimer = 0;
+  let disabled = true;
 
-  // console.log('Total widgets: ' + totalWidgets);
+  // CSS_className
+  let inputClass = 'w-full px-2.5 py-1 border focus:outline-none rounded-md';
 
-  listAllWidgets.map((list) => {
-    if (list.type === 'justSay') {
-      totalJustSay = totalJustSay + list.value.length;
-    } else if (list.type === 'counter') {
-      totalCounter = totalCounter + list.value;
-    }
-  });
+  let editJustShout = (
+    <SettingCard title='JustShout text'>
+      <fieldset disabled>
+        <form className='flex'>
+          <div className='flex-1 mr-1'>
+            <input
+              type='text'
+              className={`${inputClass}`}
+              placeholder='Enter text'
+              defaultValue=''
+            />
+          </div>
+          <Btn disabled={disabled} color='primary' btnName='Edit' />
+        </form>
+      </fieldset>
+    </SettingCard>
+  );
 
-  // const onSubmit = function (e) {
-  //   e.preventDefault(e);
-  //   setZero(e.target.selector.value);
-  // };
-
-  const onSubmitJustShout = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.title.value);
     if (e.target.title.value.length < 3) {
@@ -46,13 +52,44 @@ export default function Settings({
     }
   };
 
+  listAllWidgets.map((list) => {
+    if (list.type === 'justSay' || list.type === 'justShout') {
+      if (list.type === 'justShout' && list.value) {
+        editJustShout = (
+          <SettingCard title='JustShout text'>
+            <fieldset>
+              <form onSubmit={onSubmit} className='flex'>
+                <div className='flex-1 mr-1'>
+                  <input
+                    name='title'
+                    type='text'
+                    className={`${inputClass}`}
+                    placeholder='Enter text'
+                    defaultValue={defaultValueShout}
+                  />
+                </div>
+                <div>
+                  <Btn disabled={!disabled} color='primary' btnName='Edit' />
+                </div>
+              </form>
+              <div className='text-red-600 text-xs mt-1'>{checkError}</div>
+            </fieldset>
+          </SettingCard>
+        );
+      }
+      totalJustSay = totalJustSay + list.value.length;
+    } else if (list.type === 'counter') {
+      totalCounter = totalCounter + list.value;
+    }
+  });
+
   return (
     <>
       <TextHead>Settings</TextHead>
       <SettingCard title='Statistics'>
         <div className='table'>
           <TextHeadTable title='Total widgets: '>{totalWidgets}</TextHeadTable>
-          <TextHeadTable title='Total JustSay length: '>
+          <TextHeadTable title='Total Just length: '>
             {totalJustSay}
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
@@ -60,8 +97,8 @@ export default function Settings({
           <TextHeadTable title='Coldest cities: '>Weather</TextHeadTable>
         </div>
       </SettingCard>
-
-      <SettingCard title='JustShout text'>
+      {editJustShout}
+      {/* <SettingCard title='JustShout text'>
         <fieldset>
           <form onSubmit={onSubmitJustShout} className='flex'>
             <div className='flex-1 mr-1'>
@@ -77,9 +114,9 @@ export default function Settings({
             </div>
             <Btn color='primary' btnName='Edit' />
           </form>
-          <div className='text-red-600 text-xs mt-1'>{checkError}</div>
+          <TextError>{checkError}</TextError>
         </fieldset>
-      </SettingCard>
+      </SettingCard> */}
 
       {/* <SettingCard title='Reset Zone'>
         <form onSubmit={onSubmitZero}>
@@ -93,6 +130,13 @@ export default function Settings({
         </form>
       </SettingCard> */}
       {children}
+      <SettingCard title='Delete Zone'>
+        <Btn
+          onClick={clearWidgets}
+          color='btn-danger'
+          btnName='Delete all widgets'
+        />
+      </SettingCard>
     </>
   );
 }

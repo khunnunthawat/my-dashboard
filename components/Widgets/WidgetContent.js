@@ -30,6 +30,7 @@ import JustSay from './JustSay';
 import JustShout from './JustShout';
 import Counter from './Counter';
 import Timer from './Timer';
+import Weather from './Weather';
 
 // Settings
 import SettingCard from '../SettingTools/SettingCard';
@@ -159,6 +160,7 @@ export default function WidgetContent() {
     listAllWidgets.map((data) => {
       if (data.type === 'justShout') {
         data.value = newValue;
+        setDefaultValueShout(newValue);
         // return newId;
       }
       newListAllWidgets.push(data);
@@ -224,6 +226,15 @@ export default function WidgetContent() {
               totalTime={totalTime}
             />
           );
+        } else if (list.type === 'weather') {
+          return (
+            <Weather
+              onClickEdit={onClickEdit}
+              onClickDelete={handleClickDelete}
+              key={list.id}
+              list={list}
+            />
+          );
         }
       });
     } else {
@@ -247,7 +258,7 @@ export default function WidgetContent() {
   };
 
   // SetZero value
-  const onSubmit = function (e) {
+  const onSetZero = function (e) {
     e.preventDefault(e);
     setZero(e.target.selector.value);
     setModalActiveSetting(false);
@@ -257,6 +268,7 @@ export default function WidgetContent() {
   const clearWidgets = () => {
     // clear all history
     setListAllWidgets([]);
+    setModalActiveSetting(false);
     setDefaultValueShout('');
   };
 
@@ -360,9 +372,10 @@ export default function WidgetContent() {
               setTotaltime={setTotaltime}
               defaultValueShout={defaultValueShout}
               onEditJustShout={onClickEditJustShout}
+              clearWidgets={clearWidgets}
             >
               <SettingCard title='Reset Zone'>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSetZero}>
                   <div className='flex items-center'>
                     <select name='selector' className={`${selectClass}`}>
                       <option value='Counter'>All counters</option>
@@ -371,13 +384,6 @@ export default function WidgetContent() {
                     <Btn colorTool='colorTool' btnName='Set zero' />
                   </div>
                 </form>
-              </SettingCard>
-              <SettingCard title='Delete Zone'>
-                <Btn
-                  onClick={clearWidgets}
-                  color='btn-danger'
-                  btnName='Delete all widgets'
-                />
               </SettingCard>
             </Settings>
           </ModalCard>

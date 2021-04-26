@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
-import { TextHeadWidget } from '../Modals/TextHead';
+import { TextHeadWidget, TextError } from '../Modals/TextHead';
 
 export default function FormJson({ onAdd }) {
   const [checkError, setCheckError] = useState('');
@@ -33,7 +33,7 @@ export default function FormJson({ onAdd }) {
           <Btn color='primary'> Add</Btn>
         </div>
       </form>
-      <div className='text-red-600 text-xs mt-1'>{checkError}</div>
+      <TextError>{checkError}</TextError>
     </>
   );
 }

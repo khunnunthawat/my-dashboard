@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoClose } from 'react-icons/io5';
-import { MdEdit } from 'react-icons/md';
+import { MdEdit, MdRefresh } from 'react-icons/md';
 
 let mdCss = 'md:inner md:w-1/2 pb-4 md:pr-4';
 let bgCard = 'p-5 border-1 bg-white rounded-2xl relative';
@@ -48,6 +48,36 @@ export const CardEdit = ({
       <div className={`${bgCard}`}>
         <h2 className={`${textCss}`}>{title}</h2>
         <div className={`${absCss}`}>
+          <button className={`${iconText} + mr-2`} onClick={handleClickEdit}>
+            <MdEdit />
+          </button>
+          <button className={`${iconText}`} onClick={handleClick}>
+            <IoClose />
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export const CardEditRefresh = ({ title, children, onClickDelete, onClickEdit }) => {
+  const handleClick = function (e) {
+    onClickDelete(e);
+  };
+
+  const handleClickEdit = function (e) {
+    onClickEdit(e);
+  };
+
+  return (
+    <div className={`${mdCss}`}>
+      <div className={`${bgCard}`}>
+        <h2 className={`${textCss}`}>{title}</h2>
+        <div className={`${absCss}`}>
+          <button className={`${iconText} + mr-2`}>
+            <MdRefresh />
+          </button>
           <button className={`${iconText} + mr-2`} onClick={handleClickEdit}>
             <MdEdit />
           </button>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
-import { TextAddWidget } from '../Modals/TextHead';
+import { TextError } from '../Modals/TextHead';
 
-export default function FormJust({ onEditSubmit, list, title }) {
+export default function EditForm({ onEditSubmit, list, title }) {
   const [checkError, setCheckError] = useState('');
 
   const onSubmit = (e) => {
@@ -37,7 +37,7 @@ export default function FormJust({ onEditSubmit, list, title }) {
           <Btn color='primary'> Add</Btn>
         </div>
       </form>
-      <div className='text-red-600 text-xs mt-1'>{checkError}</div>
+      <TextError>{checkError}</TextError>
     </>
   );
 }

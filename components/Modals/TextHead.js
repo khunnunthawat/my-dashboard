@@ -16,3 +16,7 @@ export const TextHeadTable = ({ title, children }) => (
 export const TextHeadWidget = ({ title }) => (
   <h2 className='text-xl mb-2'>{title}</h2>
 );
+
+export const TextError = ({ children }) => (
+  <h2 className='text-red-600 text-xs mt-1'>{children}</h2>
+);

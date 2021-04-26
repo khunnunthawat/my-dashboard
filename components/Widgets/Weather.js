@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CardEdit } from '../Layouts/Card';
+import { CardEditRefresh } from '../Layouts/Card';
 import EditForm from '../AddWidgets/EditForm';
 import { ModalCard } from '../Modals/ModalCard';
 
@@ -27,11 +27,11 @@ export default function JustSay({ list, onClickEdit, onClickDelete }) {
     <>
       {modalActiveEdit && (
         <ModalCard onCancel={handleCancel}>
-          <EditForm title='JustSay' onEditSubmit={onEditSubmit} list={list} />
+          <EditForm title='Weather' onEditSubmit={onEditSubmit} list={list} />
         </ModalCard>
       )}
-      <CardEdit
-        title='JustSay'
+      <CardEditRefresh
+        title='Weather'
         key={list.id}
         onClickDelete={handleClick}
         onClickEdit={handleClickEdit}
@@ -43,7 +43,24 @@ export default function JustSay({ list, onClickEdit, onClickDelete }) {
         <div className='text-xs text-gray-400'>
           <div className='mt-6 -mb-2 text-center'>{list.date}</div>
         </div>
-      </CardEdit>
+        -----
+        <div className='text-center'>
+          <h3 className='text-xl font-bold capitalize'>Bangkok</h3>
+          <h4 className='text-gray-400 -mt-1'>
+            <i className='align-middle text-2xl mr-1.5 owi owi-10n' />
+            <img
+              className='h-12 w-12 '
+              src={`http://openweathermap.org/img/wn/${list.value.weather[0].icon}@2x.png`}
+              alt='logo'
+            />
+            <span className='align-middle'>light rain</span>
+          </h4>
+          <h2 className='text-gray-500 mt-1 text-5xl font-extralight'>28°</h2>
+        </div>
+        <div className='text-xs text-gray-400'>
+          <div className='mt-6 -mb-2 text-center'>{list.date}</div>
+        </div>
+      </CardEditRefresh>
     </>
   );
 }

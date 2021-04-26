@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
-import { TextHeadWidget } from '../Modals/TextHead';
+import { TextHeadWidget, TextError } from '../Modals/TextHead';
 
-export default function FormWeather({ onAdd }) {
+export default function FormJustSay({ onAdd }) {
   const [checkError, setCheckError] = useState('');
 
   const onSubmit = (e) => {
@@ -32,7 +32,7 @@ export default function FormWeather({ onAdd }) {
           <Btn color='primary'> Add</Btn>
         </div>
       </form>
-      <div className='text-red-600 text-xs mt-1'>{checkError}</div>
+      <TextError>{checkError}</TextError>
     </>
   );
 }
