@@ -61,12 +61,6 @@ export default function TimerTest({
     console.log(handlePause);
   };
 
-  const handleResume = () => {
-    setIsActive(true);
-    setIsPaused(false);
-    console.log(handleResume);
-  };
-
   const handleReset = () => {
     setIsActive(false);
     setIsPaused(false);
@@ -111,22 +105,6 @@ export default function TimerTest({
             color='primary'
             btnName='Reset'
           /> */}
-          {/* {!isActive && !isPaused ? (
-            <Btn onClick={handleStart} btnName='Start' color='primary' />
-          ) : isPaused ? (
-            <Btn onClick={handlePause} btnName='Pause' color='primary' />
-          ) : (
-            <Btn onClick={handleResume} btnName='Resume' color='primary' />
-          )}
-          {!isActive && timer > 0 && (
-            <Btn onClick={handleReset} disabled={!disabled} btnName='Reset' />
-          )}
-          {isActive && timer == 0 && (
-            <Btn onClick={handleReset} disabled={!disabled} btnName='Reset' />
-          )}
-           {isActive && (
-            <Btn onClick={handleReset} disabled={!disabled} btnName='Reset' />
-          )} */}
           {!isActive && (
             <Btn
               onClick={handleStart}
