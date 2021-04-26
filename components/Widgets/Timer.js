@@ -63,7 +63,7 @@ export default function TimerTest({
 
   const handleResume = () => {
     setIsActive(true);
-    setIsPaused(true);
+    setIsPaused(false);
     console.log(handleResume);
   };
 
@@ -111,19 +111,62 @@ export default function TimerTest({
             color='primary'
             btnName='Reset'
           /> */}
-          {!isActive && !isPaused ? (
+          {/* {!isActive && !isPaused ? (
             <Btn onClick={handleStart} btnName='Start' color='primary' />
           ) : isPaused ? (
             <Btn onClick={handlePause} btnName='Pause' color='primary' />
           ) : (
             <Btn onClick={handleResume} btnName='Resume' color='primary' />
           )}
-          <Btn
-            onClick={handleReset}
-            disabled={!isActive}
-            btnName='Reset'
-            color='primary'
-          />
+          {!isActive && timer > 0 && (
+            <Btn onClick={handleReset} disabled={!disabled} btnName='Reset' />
+          )}
+          {isActive && timer == 0 && (
+            <Btn onClick={handleReset} disabled={!disabled} btnName='Reset' />
+          )}
+           {isActive && (
+            <Btn onClick={handleReset} disabled={!disabled} btnName='Reset' />
+          )} */}
+          {!isActive && (
+            <Btn
+              onClick={handleStart}
+              disabled={!disabled}
+              btnName='Start'
+              color='primary'
+            />
+          )}
+          {isActive && (
+            <Btn
+              onClick={handlePause}
+              disabled={!disabled}
+              btnName='Pause'
+              color='primary'
+            />
+          )}
+          {!isActive && timer == 0 && (
+            <Btn
+              onClick={handleReset}
+              disabled={disabled}
+              btnName='Reset'
+              color='primary'
+            />
+          )}
+          {isActive && (
+            <Btn
+              onClick={handleReset}
+              disabled={!disabled}
+              btnName='Reset'
+              color='primary'
+            />
+          )}
+          {!isActive && timer > 0 && (
+            <Btn
+              onClick={handleReset}
+              disabled={!disabled}
+              btnName='Reset'
+              color='primary'
+            />
+          )}
         </>
       </div>
       <div className='text-xs text-gray-400'>
