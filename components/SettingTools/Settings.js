@@ -1,14 +1,14 @@
 import React from 'react';
 import { TextHead, TextHeadTable } from '../Modals/TextHead';
 import SettingCard from './SettingCard';
-// import Btn from '../Btn';
+import Btn from '../Btn';
 
 export default function Settings({
   listAllWidgets,
   children,
   // setZero,
   setTotaltime,
-  totalTime
+  totalTime,
 }) {
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
@@ -41,7 +41,26 @@ export default function Settings({
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
           <TextHeadTable title='Total time: '>{totalTime}</TextHeadTable>
+          <TextHeadTable title='Coldest cities: '>Weather</TextHeadTable>
         </div>
+      </SettingCard>
+
+      <SettingCard title='JustShout text'>
+        <fieldset>
+          <form className='flex'>
+            <div className='flex-1 mr-1'>
+              <input
+                type='text'
+                className='w-full px-2.5 py-1 border focus:outline-none rounded-md'
+                placeholder='Enter text'
+                defaultValue
+              />
+            </div>
+            <div>
+              <Btn color='primary' btnName='Edit' />
+            </div>
+          </form>
+        </fieldset>
       </SettingCard>
 
       {/* <SettingCard title='Reset Zone'>

@@ -11,10 +11,18 @@ export default function AboutContent() {
         <div className='p-5 border-1 bg-white rounded-2xl'>
           <h2 className='text-lg font-bold text-gray-400 mb-1.5'>{say}</h2>
           <p>
-            Currently, we have only <strong>JustSay</strong>,{' '}
-            <strong>Counter</strong> and <strong>Timer</strong> widgets.
+            We have <strong>JustSay</strong>,{}
+            <strong>JustShout</strong>,<strong>{} Counter</strong>,{}
+            <strong>Timer</strong>,
+            <strong>{} Weather</strong> and super hard <strong>TicTacToe</strong>
+            {} widgets! You can now add / modify / delete widgets or even
+            destroy all of them, also view super great useless statistics! Now
+            bundled with
           </p>
-          <p>You can now add more widgets or even destroy all of then :P</p>
+          <p>
+            state persistence, that remember your widgets eternally, except you
+            wipe up your browser data :P
+          </p>
           <p>
             Crafted with <span className='text-pink-500'>♥</span> by Eiffel.
           </p>

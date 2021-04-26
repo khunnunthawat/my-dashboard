@@ -131,3 +131,23 @@
   // const [counter, setCouter] = useState('');
   // const [timer, setTimer] = useState('');
 ###
+
+###
+  const handleClickAdd = function (type, value) {
+    let id;
+    if (listAllWidgets.length == 0) {
+      id = 1;
+    } else {
+      const lastArray = listAllWidgets.slice(-1).pop(); // .slice(-1).pop() เลือก array ตัวสุดท้ายมาให้
+      id = lastArray.id + 1;
+    }
+    const data = {
+      value,
+      id: id,
+      // date: DateTime,
+      type,
+    };
+    setListAllWidgets([...listAllWidgets, data]);
+    handleCancel();
+  };
+###

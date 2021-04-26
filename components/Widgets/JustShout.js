@@ -3,7 +3,7 @@ import { CardEdit } from '../Layouts/Card';
 import EditJustSay from '../AddWidgets/EditJustSay';
 import { ModalCard } from '../Modals/ModalCard';
 
-export default function JustSay({ list, onClickEdit, onClickDelete }) {
+export default function JustShout({ list, onClickEdit, onClickDelete }) {
   const [modalActiveEdit, setModalActiveEdit] = useState(false);
 
   const handleCancel = function () {
@@ -31,7 +31,7 @@ export default function JustSay({ list, onClickEdit, onClickDelete }) {
         </ModalCard>
       )}
       <CardEdit
-        title='JustSay'
+        title='JustShout'
         key={list.id}
         onClickDelete={handleClick}
         onClickEdit={handleClickEdit}

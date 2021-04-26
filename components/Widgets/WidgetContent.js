@@ -9,18 +9,26 @@ import {
 } from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
-import { TextHead } from '../Modals/TextHead';
+import { HiOutlineSpeakerphone } from 'react-icons/hi';
+import { TiWeatherPartlySunny } from 'react-icons/ti';
+import { VscJson } from 'react-icons/vsc';
+
 
 // Form_Input
-import FormCounter from '../AddWidgets/FormCounter';
 import FormJustSay from '../AddWidgets/FormJustSay';
+import FormJustShout from '../AddWidgets/FormJustShout';
+import FormCounter from '../AddWidgets/FormCounter';
+import FormWeather from '../AddWidgets/FormWeather';
+import FormJson from '../AddWidgets/FormJson';
 
 // Layout_Card
 import { ModalCard } from '../Modals/ModalCard';
+import { TextHead } from '../Modals/TextHead';
 import WidgetMenuCard from './WidgetMenuCard';
 
 // Widgets_Card
 import JustSay from './JustSay';
+import JustShout from './JustShout';
 import Counter from './Counter';
 import Timer from './Timer';
 
@@ -29,14 +37,27 @@ import SettingCard from '../SettingTools/SettingCard';
 import Settings from '../SettingTools/Settings';
 
 export default function WidgetContent() {
+
+  // Set_Menu
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
+
+  // Set_Modal_Wedgets
   const [modalActiveJustsay, setModalActiveJustsay] = useState(false);
+  const [modalActiveJustShout, setModalActiveJustShout] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
+  const [modalActiveWeather, setModalActiveWeather] = useState(false);
+  const [modalActiveJSON, setModalActiveJSON] = useState(false);
+
+  const [defaultValueShout, setDefaultValueShout] = useState('');
+
+  // Set_Settings
   const [modalActiveSetting, setModalActiveSetting] = useState(false);
 
+  // Zero_Timer_Counter
   const [zero, setZero] = useState('');
   const [totalTime, setTotaltime] = useState('');
 
+  // List_All_Widgets
   const [listAllWidgets, setListAllWidgets] = useState([]);
 
   const handleClickMenu = function () {
@@ -48,10 +69,25 @@ export default function WidgetContent() {
     setModalActiveJustsay(true);
   };
 
+  const handleClickJustShout = function () {
+    setModalActiveMenu(false);
+    setModalActiveJustShout(true);
+  };
+
   const handleClickCounter = function () {
     setModalActiveMenu(false);
     setModalActiveCounter(true);
   };
+
+  const handleClickWeather = function () {
+    setModalActiveMenu(false);
+    setModalActiveWeather(true);
+  };
+
+  const handleClickJSON = function () {
+    setModalActiveMenu(false);
+    setModalActiveJSON(true);
+  }
 
   const handleClickSetting = function () {
     setModalActiveSetting(true);
@@ -60,7 +96,10 @@ export default function WidgetContent() {
   const handleCancel = function () {
     setModalActiveMenu(false);
     setModalActiveJustsay(false);
+    setModalActiveJustShout(false);
     setModalActiveCounter(false);
+    setModalActiveWeather(false);
+    setModalActiveJSON(false);
     setModalActiveSetting(false);
   };
 
@@ -91,6 +130,14 @@ export default function WidgetContent() {
       date: DateTime,
       type,
     };
+    if (type === 'justShout') {
+      setDefaultValueShout(value);
+      listAllWidgets.map((list) => {
+        if (list.type === 'justShout') {
+          list.value = value;
+        }
+      });
+    }
     setListAllWidgets([...listAllWidgets, data]);
     handleCancel();
   };
@@ -102,6 +149,9 @@ export default function WidgetContent() {
       if (data.id === newId) {
         data.value = newValue;
         // return newId;
+      }
+      if (data.type === "justShout") {
+        data.value = newValue;
       }
       newListAllWidgets.push(data);
     });
@@ -126,6 +176,15 @@ export default function WidgetContent() {
         if (list.type === 'justSay') {
           return (
             <JustSay
+              onClickEdit={onClickEdit}
+              onClickDelete={handleClickDelete}
+              key={list.id}
+              list={list}
+            />
+          );
+        } else if (list.type === 'justShout') {
+          return (
+            <JustShout
               onClickEdit={onClickEdit}
               onClickDelete={handleClickDelete}
               key={list.id}
@@ -214,12 +273,19 @@ export default function WidgetContent() {
           <ModalCard onCancel={handleCancel}>
             <TextHead>Add widget</TextHead>
             <div className='flex flex-wrap text-center mt-1.5 -ml-1.5'>
+              {/* JustSay */}
               <WidgetMenuCard title='JustSay' onClick={handleClickJustsay}>
                 <AiOutlineMessage className={`${iconClass}`} />
               </WidgetMenuCard>
+              {/* JustShout */}
+              <WidgetMenuCard title='JustShout' onClick={handleClickJustShout}>
+                <HiOutlineSpeakerphone className={`${iconClass}`} />
+              </WidgetMenuCard>
+              {/* Counter */}
               <WidgetMenuCard title='Counter' onClick={handleClickCounter}>
                 <RiIncreaseDecreaseLine className={`${iconClass}`} />
               </WidgetMenuCard>
+              {/* Timer */}
               <WidgetMenuCard
                 title='Timer'
                 onClick={() => {
@@ -227,6 +293,14 @@ export default function WidgetContent() {
                 }}
               >
                 <IoTimerOutline className={`${iconClass}`} />
+              </WidgetMenuCard>
+              {/* Weather */}
+              <WidgetMenuCard title='Weather' onClick={handleClickWeather}>
+                <TiWeatherPartlySunny className={`${iconClass}`} />
+              </WidgetMenuCard>
+              {/* My_Widget */}
+              <WidgetMenuCard title='JSON' onClick={handleClickJSON}>
+                <VscJson className={`${iconClass}`} />
               </WidgetMenuCard>
             </div>
           </ModalCard>
@@ -237,10 +311,31 @@ export default function WidgetContent() {
             <FormJustSay onAdd={handleClickAdd} />
           </ModalCard>
         )}
+        {/* Modal_JustShout */}
+        {modalActiveJustShout && (
+          <ModalCard onCancel={handleCancel}>
+            <FormJustShout
+              onAdd={handleClickAdd}
+              defaultValueShout={defaultValueShout}
+            />
+          </ModalCard>
+        )}
         {/* Modal_Counter */}
         {modalActiveCounter && (
           <ModalCard onCancel={handleCancel}>
             <FormCounter onAdd={handleClickAdd} />
+          </ModalCard>
+        )}
+        {/* Modal_Weather */}
+        {modalActiveWeather && (
+          <ModalCard onCancel={handleCancel}>
+            <FormWeather onAdd={handleClickAdd} />
+          </ModalCard>
+        )}
+        {/* Modal_JSON */}
+        {modalActiveJSON && (
+          <ModalCard onCancel={handleCancel}>
+            <FormJson onAdd={handleClickAdd} />
           </ModalCard>
         )}
         {/* Modal_Settings */}
