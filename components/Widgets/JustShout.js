@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { CardEdit } from '../Layouts/Card';
-import EditJustSay from '../AddWidgets/EditJustSay';
+import EditJust from '../AddWidgets/EditJust';
 import { ModalCard } from '../Modals/ModalCard';
 
-export default function JustShout({ list, onClickEdit, onClickDelete }) {
+export default function JustShout({ list, onClickEditJustShout, onClickDelete }) {
   const [modalActiveEdit, setModalActiveEdit] = useState(false);
 
   const handleCancel = function () {
@@ -19,7 +19,7 @@ export default function JustShout({ list, onClickEdit, onClickDelete }) {
   };
 
   const onEditSubmit = function (id, content) {
-    onClickEdit(id, content);
+    onClickEditJustShout(id, content);
     setModalActiveEdit(false);
   };
 
@@ -27,7 +27,7 @@ export default function JustShout({ list, onClickEdit, onClickDelete }) {
     <>
       {modalActiveEdit && (
         <ModalCard onCancel={handleCancel}>
-          <EditJustSay onEditSubmit={onEditSubmit} list={list} />
+          <EditJust title='JustShout' onEditSubmit={onEditSubmit} list={list} />
         </ModalCard>
       )}
       <CardEdit

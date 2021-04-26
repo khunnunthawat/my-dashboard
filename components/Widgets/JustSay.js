@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CardEdit } from '../Layouts/Card';
-import EditJustSay from '../AddWidgets/EditJustSay';
+import EditJust from '../AddWidgets/EditJust';
 import { ModalCard } from '../Modals/ModalCard';
 
 export default function JustSay({ list, onClickEdit, onClickDelete }) {
@@ -27,7 +27,7 @@ export default function JustSay({ list, onClickEdit, onClickDelete }) {
     <>
       {modalActiveEdit && (
         <ModalCard onCancel={handleCancel}>
-          <EditJustSay onEditSubmit={onEditSubmit} list={list} />
+          <EditJust title='JustSay' onEditSubmit={onEditSubmit} list={list} />
         </ModalCard>
       )}
       <CardEdit

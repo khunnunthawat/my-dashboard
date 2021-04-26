@@ -13,7 +13,6 @@ import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
 import { VscJson } from 'react-icons/vsc';
 
-
 // Form_Input
 import FormJustSay from '../AddWidgets/FormJustSay';
 import FormJustShout from '../AddWidgets/FormJustShout';
@@ -37,7 +36,6 @@ import SettingCard from '../SettingTools/SettingCard';
 import Settings from '../SettingTools/Settings';
 
 export default function WidgetContent() {
-
   // Set_Menu
   const [modalActiveMenu, setModalActiveMenu] = useState(false);
 
@@ -87,7 +85,7 @@ export default function WidgetContent() {
   const handleClickJSON = function () {
     setModalActiveMenu(false);
     setModalActiveJSON(true);
-  }
+  };
 
   const handleClickSetting = function () {
     setModalActiveSetting(true);
@@ -150,13 +148,24 @@ export default function WidgetContent() {
         data.value = newValue;
         // return newId;
       }
-      if (data.type === "justShout") {
+      newListAllWidgets.push(data);
+    });
+
+    setListAllWidgets(newListAllWidgets);
+  };
+
+  const onClickEditJustShout = (newValue) => {
+    let newListAllWidgets = [];
+    listAllWidgets.map((data) => {
+      if (data.type === 'justShout') {
         data.value = newValue;
+        // return newId;
       }
       newListAllWidgets.push(data);
     });
 
     setListAllWidgets(newListAllWidgets);
+    setModalActiveSetting(false);
   };
 
   // Delete widgets state
@@ -185,7 +194,7 @@ export default function WidgetContent() {
         } else if (list.type === 'justShout') {
           return (
             <JustShout
-              onClickEdit={onClickEdit}
+              onClickEditJustShout={onClickEditJustShout}
               onClickDelete={handleClickDelete}
               key={list.id}
               list={list}
@@ -347,6 +356,8 @@ export default function WidgetContent() {
               setZero={setZero}
               totalTime={totalTime} // realtime_show
               setTotaltime={setTotaltime}
+              defaultValueShout={defaultValueShout}
+              onEditJustShout={onClickEditJustShout}
             >
               <SettingCard title='Reset Zone'>
                 <form onSubmit={onSubmit}>
