@@ -18,7 +18,6 @@ export default function Settings({
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
-  let disabled = true;
 
   // CSS_className
   let inputClass = 'w-full px-2.5 py-1 border focus:outline-none rounded-md';
@@ -35,7 +34,7 @@ export default function Settings({
               defaultValue=''
             />
           </div>
-          <Btn disabled={disabled} color='primary' btnName='Edit' />
+          <Btn disabled={true} color='primary' btnName='Edit' />
         </form>
       </fieldset>
     </SettingCard>
@@ -69,7 +68,7 @@ export default function Settings({
                   />
                 </div>
                 <div>
-                  <Btn disabled={!disabled} color='primary' btnName='Edit' />
+                  <Btn disabled={false} color='primary' btnName='Edit' />
                 </div>
               </form>
               <div className='text-red-600 text-xs mt-1'>{checkError}</div>

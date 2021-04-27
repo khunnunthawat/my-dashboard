@@ -76,7 +76,6 @@ export default function TimerTest({
     return `${getMinutes} : ${getSeconds}`;
   };
 
-  let disabled = true;
   list.value = timer;
   // console.log(list.value);
 
@@ -108,7 +107,7 @@ export default function TimerTest({
           {!isActive && (
             <Btn
               onClick={handleStart}
-              disabled={!disabled}
+              disabled={false}
               btnName='Start'
               color='primary'
             />
@@ -116,7 +115,7 @@ export default function TimerTest({
           {isActive && (
             <Btn
               onClick={handlePause}
-              disabled={!disabled}
+              disabled={false}
               btnName='Pause'
               color='primary'
             />
@@ -124,7 +123,7 @@ export default function TimerTest({
           {!isActive && timer == 0 && (
             <Btn
               onClick={handleReset}
-              disabled={disabled}
+              disabled={true}
               btnName='Reset'
               color='primary'
             />
@@ -132,7 +131,7 @@ export default function TimerTest({
           {isActive && (
             <Btn
               onClick={handleReset}
-              disabled={!disabled}
+              disabled={false}
               btnName='Reset'
               color='primary'
             />
@@ -140,7 +139,7 @@ export default function TimerTest({
           {!isActive && timer > 0 && (
             <Btn
               onClick={handleReset}
-              disabled={!disabled}
+              disabled={false}
               btnName='Reset'
               color='primary'
             />

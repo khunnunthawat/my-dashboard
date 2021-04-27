@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 import Btn from '../Btn';
 import { TextHeadWidget, TextError } from '../Modals/TextHead';
-import openweather from '../../pages/api/openweather';
+import axios from 'axios';
 
 export default function FormJustSay({ onAdd, defaultValue }) {
   const [checkError, setCheckError] = useState('');
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e ,value) => {
     e.preventDefault();
     console.log(e.target.title.value);
+
     if (e.target.title.value.length < 3) {
       setCheckError('Please enter at least 3 characters.');
       // console.log(e.target.title.value.length);
     } else {
-      try {
-        const res = await openweather.get('/data/2.5/weather', {
-          params: {
-            q: e.target.title.value,
-            units: 'metric',
-          },
-        });
 
-        const { data } = res;
+      // API_Weather
+      try {
+        const url =
+          'https://api.openweathermap.org/data/2.5/weather?q=' +
+          value +
+          '&appid=2c486a422a8abed95fca0bbd2c35fc80';
+
+        const { data } = await axios.get(url);
+        // console.log(data);
 
         onAdd('weather : ', data);
       } catch {
-        console.log('City not found');
+        onAdd('weatherNone : ', e.target.title.value);
+        console.log('City not found !');
       }
     }
   };

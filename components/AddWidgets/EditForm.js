@@ -5,6 +5,12 @@ import { TextError } from '../Modals/TextHead';
 export default function EditForm({ onEditSubmit, list, title }) {
   const [checkError, setCheckError] = useState('');
 
+  let defaultValue = list.value;
+  console.log('defaultValue weather :' + defaultValue);
+  if (list.type === 'weather') {
+    defaultValue = list.value.name;
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(e.preventDefault());
@@ -15,6 +21,8 @@ export default function EditForm({ onEditSubmit, list, title }) {
       if (list.type === 'justSay') {
         onEditSubmit(list.id, e.target.title.value.trim());
       } else if (list.type === 'justShout') {
+        onEditSubmit(e.target.title.value.trim());
+      } else if (list.type === 'weather') {
         onEditSubmit(e.target.title.value.trim());
       }
     }
@@ -31,6 +39,7 @@ export default function EditForm({ onEditSubmit, list, title }) {
             type='text'
             className='w-full px-2.5 py-1 focus:outline-none rounded-md'
             placeholder='Enter text'
+            defaultValue={defaultValue}
           />
         </div>
         <div>

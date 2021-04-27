@@ -20,7 +20,6 @@ export default function Counter({ title, list, setZero, zero, onClickDelete = ()
 
   let clearCount;
   let decrease;
-  let disabled = true;
 
   let countCss = 'text-5xl rounded-full w-10 text-center focus:outline-none';
   let countBlue = 'text-blue-500';
@@ -35,7 +34,7 @@ export default function Counter({ title, list, setZero, zero, onClickDelete = ()
     clearCount = (
       <Btn
         onClick={handleClickCount}
-        disabled={disabled}
+        disabled={true}
         color='default'
         btnName='Set zero'
       />
@@ -45,7 +44,7 @@ export default function Counter({ title, list, setZero, zero, onClickDelete = ()
     clearCount = (
       <Btn
         onClick={handleClickCount}
-        disabled={!disabled}
+        disabled={false}
         color='primary'
         btnName='Set zero'
       />
