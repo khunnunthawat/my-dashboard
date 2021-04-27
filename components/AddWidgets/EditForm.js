@@ -27,6 +27,7 @@ export default function EditForm({ onEditSubmit, list, title }) {
       } else if (list.type === 'justShout') {
         onEditSubmit(e.target.title.value.trim());
       } else if (list.type === 'weather' || list.type === 'weatherNone') {
+        console.log('dddddd' + list.type);
         onEditSubmit(list.id, list.type, e.target.title.value.trim()); 
       }
     }

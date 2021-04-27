@@ -174,7 +174,7 @@ export default function WidgetContent() {
     let newListAllWidgets = [];
     listAllWidgets.map((data) => {
       if (data.id === newId) {
-        data.value = newType;
+        data.type = newType;
         data.value = newValue;
         data.date = DateTime;
         // return newId;
@@ -241,6 +241,7 @@ export default function WidgetContent() {
             />
           );
         } else if (list.type === 'weather' || list.type === 'weatherNone') {
+          console.log('type : ' + list.type);
           return (
             <Weather
               onClickEditWeather={onClickEditWeather}

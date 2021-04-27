@@ -76,9 +76,6 @@ export default function Counter({ title, list, setZero, zero, onClickDelete = ()
           </button>
         </div>
         {clearCount}
-        <div className='text-xs text-gray-400'>
-          <div className='mt-6 -mb-2 text-center'>{list.date}</div>
-        </div>
       </div>
     </Card>
   );

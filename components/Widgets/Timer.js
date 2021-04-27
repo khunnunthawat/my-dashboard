@@ -146,9 +146,6 @@ export default function TimerTest({
           )}
         </>
       </div>
-      <div className='text-xs text-gray-400'>
-        <div className='mt-6 -mb-2 text-center'>{list.date}</div>
-      </div>
     </Card>
   );
 }
