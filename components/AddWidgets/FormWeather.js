@@ -3,7 +3,7 @@ import Btn from '../Btn';
 import { TextHeadWidget, TextError } from '../Modals/TextHead';
 import axios from 'axios';
 
-export default function FormJustSay({ onAdd, defaultValue }) {
+export default function FormJustSay({ onAdd }) {
   const [checkError, setCheckError] = useState('');
 
   const onSubmit = async (e) => {
@@ -46,7 +46,6 @@ export default function FormJustSay({ onAdd, defaultValue }) {
             type='text'
             className='w-full px-2.5 py-1 focus:outline-none rounded-md'
             placeholder='Enter a city'
-            defaultValue={defaultValue}
           />
         </div>
         <div>

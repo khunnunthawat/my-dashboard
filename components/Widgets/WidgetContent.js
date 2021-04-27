@@ -367,7 +367,7 @@ export default function WidgetContent() {
           <ModalCard onCancel={handleCancel}>
             <FormWeather
               onAdd={handleClickAdd}
-              defaultValue={defaultValueShout}
+              defaultValueShout={defaultValueShout}
             />
           </ModalCard>
         )}

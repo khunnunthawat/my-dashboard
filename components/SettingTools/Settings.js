@@ -18,6 +18,8 @@ export default function Settings({
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
+  var lowest = Number.POSITIVE_INFINITY;
+  var highest = Number.NEGATIVE_INFINITY;
   let weatherCity = 'N/A';
 
   // CSS_className
@@ -81,7 +83,11 @@ export default function Settings({
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
     } else if (list.type === 'weather') {
-      weatherCity = list.value.name;
+      highest = `${parseInt(list.value.data.main.temp)}`;
+      if (highest < lowest) {
+        lowest = highest;
+        weatherCity = list.value.data.name;
+      }
     }
   });
 
@@ -111,3 +117,7 @@ export default function Settings({
     </>
   );
 }
+
+// else if (list.type === 'weather') {
+//       weatherCity = list.value.name;
+//     }

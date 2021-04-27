@@ -151,3 +151,17 @@
     handleCancel();
   };
 ###
+
+###
+weather : max min
+link : https://stackoverflow.com/questions/8864430/compare-javascript-array-of-objects-to-get-min-max
+
+  var lowest = Number.POSITIVE_INFINITY;
+  var highest = Number.NEGATIVE_INFINITY;
+
+  highest = `${parseInt(list.value.data.main.temp)}`;
+    if (highest < lowest) {
+      lowest = highest;
+      weatherCity = list.value.data.name;
+    }
+###
