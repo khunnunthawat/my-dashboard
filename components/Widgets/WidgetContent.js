@@ -170,6 +170,20 @@ export default function WidgetContent() {
     setModalActiveSetting(false);
   };
 
+  const onClickEditWeather = (newId, newType, newValue) => {
+    let newListAllWidgets = [];
+    listAllWidgets.map((data) => {
+      if (data.id === newId) {
+        data.value = newType;
+        data.value = newValue;
+        data.date = DateTime;
+        // return newId;
+      }
+      newListAllWidgets.push(data);
+    });
+    setListAllWidgets(newListAllWidgets);
+  };
+
   // Delete widgets state
   const handleClickDelete = function (list) {
     if (listAllWidgets.length > 0) {
@@ -226,10 +240,10 @@ export default function WidgetContent() {
               totalTime={totalTime}
             />
           );
-        } else if (list.type === 'weather') {
+        } else if (list.type === 'weather' || list.type === 'weatherNone') {
           return (
             <Weather
-              onClickEdit={onClickEdit}
+              onClickEditWeather={onClickEditWeather}
               onClickDelete={handleClickDelete}
               key={list.id}
               list={list}
@@ -352,7 +366,10 @@ export default function WidgetContent() {
         {/* Modal_Weather */}
         {modalActiveWeather && (
           <ModalCard onCancel={handleCancel}>
-            <FormWeather onAdd={handleClickAdd} />
+            <FormWeather
+              onAdd={handleClickAdd}
+              defaultValue={defaultValueShout}
+            />
           </ModalCard>
         )}
         {/* Modal_JSON */}

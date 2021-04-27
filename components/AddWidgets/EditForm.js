@@ -4,12 +4,16 @@ import { TextError } from '../Modals/TextHead';
 
 export default function EditForm({ onEditSubmit, list, title }) {
   const [checkError, setCheckError] = useState('');
+  console.log('defaultValue weather : ', list);
 
   let defaultValue = list.value;
-  console.log('defaultValue weather :' + defaultValue);
+  let placeholder = 'Enter text';
+  
   if (list.type === 'weather') {
-    defaultValue = list.value.name;
-  }
+    placeholder = 'Enter a city';
+    console.log('log : '+ list.value.data.name);
+    defaultValue = list.value.data.name;
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -22,8 +26,8 @@ export default function EditForm({ onEditSubmit, list, title }) {
         onEditSubmit(list.id, e.target.title.value.trim());
       } else if (list.type === 'justShout') {
         onEditSubmit(e.target.title.value.trim());
-      } else if (list.type === 'weather') {
-        onEditSubmit(e.target.title.value.trim());
+      } else if (list.type === 'weather' || list.type === 'weatherNone') {
+        onEditSubmit(list.id, list.type, e.target.title.value.trim()); 
       }
     }
   };
@@ -35,10 +39,11 @@ export default function EditForm({ onEditSubmit, list, title }) {
         <div className='flex-1 mr-1'>
           <input
             name='title'
-            defaultValue={list.value}
+            // defaultValue={list.value}
             type='text'
             className='w-full px-2.5 py-1 focus:outline-none rounded-md'
-            placeholder='Enter text'
+            placeholder={placeholder}
+            // placeholder='Enter text'
             defaultValue={defaultValue}
           />
         </div>

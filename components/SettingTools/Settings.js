@@ -6,8 +6,8 @@ import Btn from '../Btn';
 export default function Settings({
   listAllWidgets,
   children,
-  setZero,
-  setTotaltime,
+  // setZero,
+  // setTotaltime,
   totalTime,
   defaultValueShout,
   onEditJustShout,
@@ -18,6 +18,7 @@ export default function Settings({
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
+  let weatherCity = 'N/A';
 
   // CSS_className
   let inputClass = 'w-full px-2.5 py-1 border focus:outline-none rounded-md';
@@ -79,6 +80,8 @@ export default function Settings({
       totalJustSay = totalJustSay + list.value.length;
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
+    } else if (list.type === 'weather') {
+      weatherCity = list.value.name;
     }
   });
 
@@ -93,41 +96,10 @@ export default function Settings({
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
           <TextHeadTable title='Total time: '>{totalTime}</TextHeadTable>
-          <TextHeadTable title='Coldest cities: '>Weather</TextHeadTable>
+          <TextHeadTable title='Coldest cities: '>{weatherCity}</TextHeadTable>
         </div>
       </SettingCard>
       {editJustShout}
-      {/* <SettingCard title='JustShout text'>
-        <fieldset>
-          <form onSubmit={onSubmitJustShout} className='flex'>
-            <div className='flex-1 mr-1'>
-              <input
-                name='title'
-                type='text'
-                className='w-full px-2.5 py-1 border focus:outline-none rounded-md'
-                placeholder='Enter text'
-                defaultValue={defaultValueShout}
-                // value={value}
-                // onchange={e => setValue(e.target.value)}
-              />
-            </div>
-            <Btn color='primary' btnName='Edit' />
-          </form>
-          <TextError>{checkError}</TextError>
-        </fieldset>
-      </SettingCard> */}
-
-      {/* <SettingCard title='Reset Zone'>
-        <form onSubmit={onSubmitZero}>
-          <div className='flex items-center'>
-            <select name='selector' className={`${selectClass}`}>
-              <option value='Counter'>All counters</option>
-              <option value='Timer'>All timers</option>
-            </select>
-            <Btn colorTool='colorTool' btnName='Set zero' />
-          </div>
-        </form>
-      </SettingCard> */}
       {children}
       <SettingCard title='Delete Zone'>
         <Btn

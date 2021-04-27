@@ -6,28 +6,31 @@ import axios from 'axios';
 export default function FormJustSay({ onAdd, defaultValue }) {
   const [checkError, setCheckError] = useState('');
 
-  const onSubmit = async (e ,value) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.title.value);
+    const value = e.target.title.value;
+    let key = '2c486a422a8abed95fca0bbd2c35fc80';
 
     if (e.target.title.value.length < 3) {
       setCheckError('Please enter at least 3 characters.');
-      // console.log(e.target.title.value.length);
     } else {
-
       // API_Weather
       try {
         const url =
           'https://api.openweathermap.org/data/2.5/weather?q=' +
           value +
-          '&appid=2c486a422a8abed95fca0bbd2c35fc80';
+          '&appid=' +
+          key
+          ;
+        
+        const data = await axios.get(url);
 
-        const { data } = await axios.get(url);
-        // console.log(data);
+        console.log('weatherCity : ' + value);
+        console.log(data);
 
-        onAdd('weather : ', data);
+        onAdd('weather', data);
       } catch {
-        onAdd('weatherNone : ', e.target.title.value);
+        onAdd('weatherNone', e.target.title.value);
         console.log('City not found !');
       }
     }
