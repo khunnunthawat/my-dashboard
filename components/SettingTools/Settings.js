@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextHead, TextHeadTable, TextError } from '../Modals/TextHead';
+import { TextHead, TextHeadTable } from '../Modals/TextHead';
 import SettingCard from './SettingCard';
 import Btn from '../Btn';
 

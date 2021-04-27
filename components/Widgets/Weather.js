@@ -37,20 +37,13 @@ export default function JustSay({ list, onClickEdit, onClickDelete }) {
         onClickEdit={handleClickEdit}
         list={list}
       >
-        <div className='text-center mt-8 mb-12'>
-          <h1 className='text-4xl font-bold'>{list.value}</h1>
-        </div>
-        <div className='text-xs text-gray-400'>
-          <div className='mt-6 -mb-2 text-center'>{list.date}</div>
-        </div>
-        -----
         <div className='text-center'>
-          <h3 className='text-xl font-bold capitalize'>Bangkok</h3>
+          <h3 className='text-xl font-bold capitalize'>{list.content.name}</h3>
           <h4 className='text-gray-400 -mt-1'>
             <i className='align-middle text-2xl mr-1.5 owi owi-10n' />
             <img
               className='h-12 w-12 '
-              src={`http://openweathermap.org/img/wn/${list.value.weather[0].icon}@2x.png`}
+              src={`http://openweathermap.org/img/wn/${list.content.weather[0].icon}@2x.png`}
               alt='logo'
             />
             <span className='align-middle'>light rain</span>

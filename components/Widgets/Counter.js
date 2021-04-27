@@ -15,6 +15,7 @@ export default function Counter({ title, list, setZero, zero, onClickDelete = ()
 
   const handleClick = function () {
     onClickDelete(list);
+    
   };
 
   let clearCount;
@@ -27,6 +28,7 @@ export default function Counter({ title, list, setZero, zero, onClickDelete = ()
 
   const handleClickCount = () => {
     setCount(0);
+    console.log(handleClickCount);
   };
 
   if (count == 0) {
