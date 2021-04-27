@@ -18,6 +18,7 @@ export default function Settings({
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
+  
   var lowest = Number.POSITIVE_INFINITY;
   var highest = Number.NEGATIVE_INFINITY;
   let weatherCity = 'N/A';
@@ -101,7 +102,9 @@ export default function Settings({
             {totalJustSay}
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
-          <TextHeadTable title='Total time: '>{totalTime}</TextHeadTable>
+          <TextHeadTable title='Total time: '>
+            {totalTime ? totalTime : '00:00'}
+          </TextHeadTable>
           <TextHeadTable title='Coldest cities: '>{weatherCity}</TextHeadTable>
         </div>
       </SettingCard>

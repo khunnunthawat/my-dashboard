@@ -31,7 +31,7 @@ export default function TimerTest({
       .map((data) => data.value)
       .reduce((prev, next) => prev + next);
     const totalTime = formatTime(temp);
-    console.log(formatTime(temp));
+    // console.log(formatTime(temp));
     setTotaltime(totalTime);
   }, [timer]);
 
