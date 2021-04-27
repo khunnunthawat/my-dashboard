@@ -197,7 +197,6 @@ export default function WidgetContent() {
   // Create widgets state
   const handleAddWidgets = function () {
     if (listAllWidgets.length > 0) {
-      // console.log(listAllWidgets);
       return listAllWidgets.map((list) => {
         if (list.type === 'justSay') {
           return (
@@ -241,7 +240,6 @@ export default function WidgetContent() {
             />
           );
         } else if (list.type === 'weather' || list.type === 'weatherNone') {
-          console.log('type : ' + list.type);
           return (
             <Weather
               onClickEditWeather={onClickEditWeather}

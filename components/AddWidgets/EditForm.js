@@ -4,14 +4,14 @@ import { TextError } from '../Modals/TextHead';
 
 export default function EditForm({ onEditSubmit, list, title }) {
   const [checkError, setCheckError] = useState('');
-  console.log('defaultValue weather : ', list);
+  // console.log('defaultValue weather : ', list);
 
   let defaultValue = list.value;
   let placeholder = 'Enter text';
   
   if (list.type === 'weather') {
     placeholder = 'Enter a city';
-    console.log('log : '+ list.value.data.name);
+    console.log('Edit WeatherCity : '+ list.value.data.name);
     defaultValue = list.value.data.name;
   };
 
@@ -20,14 +20,12 @@ export default function EditForm({ onEditSubmit, list, title }) {
     console.log(e.preventDefault());
     if (e.target.title.value.length < 3) {
       setCheckError('Please enter at least 3 characters.');
-      // console.log(e.target.title.value.length);
     } else {
       if (list.type === 'justSay') {
         onEditSubmit(list.id, e.target.title.value.trim());
       } else if (list.type === 'justShout') {
         onEditSubmit(e.target.title.value.trim());
       } else if (list.type === 'weather' || list.type === 'weatherNone') {
-        console.log('dddddd' + list.type);
         onEditSubmit(list.id, list.type, e.target.title.value.trim()); 
       }
     }
