@@ -36,6 +36,9 @@ export default function Weather({ list, onClickEditWeather, onClickDelete }) {
           src={`http://openweathermap.org/img/wn/${list.value.data.weather[0].icon}@2x.png`}
           alt='logo'
         />
+        {/* <i className='align-middle text-2xl mr-1.5 owi'>
+          {list.value.data.weather[0].icon}
+        </i> */}
         <span className='align-middle'>
           {list.value.data.weather[0].description}
         </span>
@@ -132,7 +135,7 @@ export default function Weather({ list, onClickEditWeather, onClickDelete }) {
   /* <div className='text-center'>
   <h3 className='text-xl font-bold capitalize'>{list.value.data.name}</h3>
   <h4 className='text-gray-400 -mt-1 flex justify-center items-center'>
-    <i className='align-middle text-2xl mr-1.5 owi owi-10n' />
+    <i className='align-middle text-2xl mr-1.5 owi' />
     <img
       className='h-10 w-10'
       src={`http://openweathermap.org/img/wn/${list.value.data.weather[0].icon}@2x.png`}

@@ -12,7 +12,7 @@ export default function FormJson({ onAdd }) {
       setCheckError('Please enter url : JSON');
       // console.log(e.target.url.value.length);
     } else {
-      onAdd('justSay', e.target.url.value.trim());
+      onAdd('jsonApi', e.target.url.value.trim());
     }
   };
 
@@ -26,7 +26,7 @@ export default function FormJson({ onAdd }) {
             type='url'
             pattern='https://.*'
             className='w-full px-2.5 py-1 focus:outline-none rounded-md'
-            placeholder='Enter url JSON : '
+            placeholder='Enter url api : '
           />
         </div>
         <div>

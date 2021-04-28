@@ -52,20 +52,20 @@ export default function TimerTest({
   const handleStart = () => {
     setIsActive(true);
     setIsPaused(true);
-    console.log(handleStart);
+    // console.log(handleStart);
   };
 
   const handlePause = () => {
     setIsActive(false);
     setIsPaused(false);
-    console.log(handlePause);
+    // console.log(handlePause);
   };
 
   const handleReset = () => {
     setIsActive(false);
     setIsPaused(false);
     setTimer(0);
-    console.log(handleReset);
+    // console.log(handleReset);
   };
 
   const formatTime = (sec) => {
@@ -86,24 +86,6 @@ export default function TimerTest({
           <div className='text-6xl mx-7'>{formatTime(timer)}</div>
         </div>
         <>
-          {/* {!isActive && !isPaused ? (
-            <Btn
-              onClick={handleStart}
-              disabled={!disabled}
-              color='primary'
-              btnName='Start'
-            />
-          ) : isPaused ? (
-            <Btn onClick={handlePause} color='primary' btnName='Pause' />
-          ) : (
-            <Btn onClick={handleResume} color='primary' btnName='Resume' />
-          )}
-          <Btn
-            onClick={handleReset}
-            disabled={disabled}
-            color='primary'
-            btnName='Reset'
-          /> */}
           {!isActive && (
             <Btn
               onClick={handleStart}

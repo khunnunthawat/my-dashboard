@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Btn from '../Btn';
 
 // icon
@@ -31,6 +31,7 @@ import JustShout from './JustShout';
 import Counter from './Counter';
 import Timer from './Timer';
 import Weather from './Weather';
+import JsonApi from './JsonApi';
 
 // Settings
 import SettingCard from '../SettingTools/SettingCard';
@@ -102,6 +103,27 @@ export default function WidgetContent() {
     setModalActiveSetting(false);
   };
 
+  // อัันนี้ดู listAllwedget ทั้งหมด
+  useEffect(() => {
+    if (localStorage.getItem('listAllWidgets') > 0) {
+      localStorage.setItem('listAllWidgets', JSON.stringify([]));
+    } else {
+      let listAllWidgetsLocal = JSON.parse(
+        localStorage.getItem('listAllWidgets')
+      );
+      setListAllWidgets(listAllWidgetsLocal);
+    }
+  }, []);
+
+  useEffect(() => {
+    saveLocalList();
+  }, [listAllWidgets]);
+
+  //Save to LocalStorage
+  const saveLocalList = () => {
+    localStorage.setItem('listAllWidgets', JSON.stringify(listAllWidgets));
+  };
+
   // DateTimeNow
   let d = new Date();
   // let ye = new Intl.DateTimeFormat('en', { year: '2-digit' }).format(d);
@@ -110,7 +132,6 @@ export default function WidgetContent() {
   var n = d.toLocaleString([], { hour12: true });
 
   let DateTime = `Added on ${n}`;
-
   /**
    * ฟังก์ชัน handleClickAdd เราสามารถ Reuse ให้ Add widget อะไรก็ได้
    * เพียงแค่ส่ง type กับ value เข้ามาจาก Add Widget แบบต่างๆ
@@ -243,6 +264,15 @@ export default function WidgetContent() {
           return (
             <Weather
               onClickEditWeather={onClickEditWeather}
+              onClickDelete={handleClickDelete}
+              key={list.id}
+              list={list}
+            />
+          );
+        } else if (list.type === 'jsonApi') {
+          return (
+            <JsonApi
+              onClickEdit={onClickEdit}
               onClickDelete={handleClickDelete}
               key={list.id}
               list={list}

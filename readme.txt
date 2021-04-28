@@ -153,6 +153,7 @@
 ###
 
 ###
+icon weather : https://openweathermap.org/weather-conditions
 weather : max min
 link : https://stackoverflow.com/questions/8864430/compare-javascript-array-of-objects-to-get-min-max
 
@@ -163,5 +164,37 @@ link : https://stackoverflow.com/questions/8864430/compare-javascript-array-of-o
     if (highest < lowest) {
       lowest = highest;
       weatherCity = list.value.data.name;
+    }
+###
+
+###
+API_Weather
+const onSubmit = async (e) => {
+    e.preventDefault();
+    const value = e.target.title.value;
+    let key = '2c486a422a8abed95fca0bbd2c35fc80';
+
+    if (e.target.title.value.length < 3) {
+      setCheckError('Please enter at least 3 characters.');
+    } else {
+      // API_Weather
+      try {
+        const url =
+          'https://api.openweathermap.org/data/2.5/weather?q=' +
+          value +
+          '&appid=' +
+          key
+          ;
+        
+        const data = await axios.get(url);
+
+        console.log('weatherCity : ' + value);
+        console.log(data);
+
+        onAdd('weather', data);
+      } catch {
+        onAdd('weatherNone', e.target.title.value);
+        console.log('City not found !');
+      }
     }
 ###
