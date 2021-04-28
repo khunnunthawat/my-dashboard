@@ -48,7 +48,7 @@ export default function WidgetContent() {
   const [modalActiveWeather, setModalActiveWeather] = useState(false);
   const [modalActiveJSON, setModalActiveJSON] = useState(false);
 
-  const [defaultValueShout, setDefaultValueShout] = useState('');
+  const [defaultValueShout, setDefaultValueShout] = useState([]);
 
   // Set_Settings
   const [modalActiveSetting, setModalActiveSetting] = useState(false);
@@ -59,6 +59,28 @@ export default function WidgetContent() {
 
   // List_All_Widgets
   const [listAllWidgets, setListAllWidgets] = useState([]);
+
+  // LocalStorage
+  useEffect(() => {
+    saveLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('listAllWidgets', JSON.stringify(listAllWidgets)); //save local storage
+    localStorage.setItem('defaultValueShout', JSON.stringify(defaultValueShout));
+  }, [listAllWidgets]);
+
+  const saveLocalStorage = () => {
+    if (localStorage.getItem('listAllWidgets') === null || localStorage.getItem('defaultValueShout') === null) {
+      localStorage.setItem('listAllWidgets', JSON.stringify([]));
+      localStorage.setItem('defaultValueShout', JSON.stringify([]));
+    } else {
+      let listLocalStorage = JSON.parse(localStorage.getItem('listAllWidgets'));
+      let defaultLocalStorage = JSON.parse(localStorage.getItem('defaultValueShout'));
+      setListAllWidgets(listLocalStorage);
+      setDefaultValueShout(defaultLocalStorage);
+    }
+  };
 
   const handleClickMenu = function () {
     setModalActiveMenu(true);
@@ -101,27 +123,6 @@ export default function WidgetContent() {
     setModalActiveWeather(false);
     setModalActiveJSON(false);
     setModalActiveSetting(false);
-  };
-
-  // อัันนี้ดู listAllwedget ทั้งหมด
-  useEffect(() => {
-    if (localStorage.getItem('listAllWidgets') > 0) {
-      localStorage.setItem('listAllWidgets', JSON.stringify([]));
-    } else {
-      let listAllWidgetsLocal = JSON.parse(
-        localStorage.getItem('listAllWidgets')
-      );
-      setListAllWidgets(listAllWidgetsLocal);
-    }
-  }, []);
-
-  useEffect(() => {
-    saveLocalList();
-  }, [listAllWidgets]);
-
-  //Save to LocalStorage
-  const saveLocalList = () => {
-    localStorage.setItem('listAllWidgets', JSON.stringify(listAllWidgets));
   };
 
   // DateTimeNow
