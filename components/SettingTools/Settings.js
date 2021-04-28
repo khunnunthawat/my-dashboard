@@ -11,13 +11,24 @@ export default function Settings({
   totalTime,
   defaultValueShout,
   onEditJustShout,
-  clearWidgets,
+  clearWidgets
 }) {
   const [checkError, setCheckError] = useState('');
+
+  const formatTime = (sec) => {
+    const getSeconds = `0${sec % 60}`.slice(-2);
+    const minutes = `${Math.floor(sec / 60)}`;
+    const getMinutes = `0${minutes % 60}`.slice(-2);
+
+    return `${getMinutes} : ${getSeconds}`;
+  };
+
+  console.log(listAllWidgets);
 
   let totalWidgets = listAllWidgets.length;
   let totalJustSay = 0;
   let totalCounter = 0;
+  let totalT = 0;
   
   var lowest = Number.POSITIVE_INFINITY;
   var highest = Number.NEGATIVE_INFINITY;
@@ -83,6 +94,8 @@ export default function Settings({
       totalJustSay = totalJustSay + list.value.length;
     } else if (list.type === 'counter') {
       totalCounter = totalCounter + list.value;
+    } else if (list.type === 'timer') {
+      totalT = totalT + list.value;
     } else if (list.type === 'weather') {
       highest = `${parseInt(list.value.data.main.temp)}`;
       if (highest < lowest) {
@@ -103,7 +116,7 @@ export default function Settings({
           </TextHeadTable>
           <TextHeadTable title='Total count: '>{totalCounter}</TextHeadTable>
           <TextHeadTable title='Total time: '>
-            {totalTime ? totalTime : '00:00'}
+            {totalT ? formatTime(totalT) : '00:00'}
           </TextHeadTable>
           <TextHeadTable title='Coldest cities: '>{weatherCity}</TextHeadTable>
         </div>

@@ -66,6 +66,7 @@ export default function WidgetContent() {
   }, []);
 
   useEffect(() => {
+    console.log(listAllWidgets);
     localStorage.setItem('listAllWidgets', JSON.stringify(listAllWidgets)); //save local storage
     localStorage.setItem('defaultValueShout', JSON.stringify(defaultValueShout));
   }, [listAllWidgets]);
@@ -80,6 +81,7 @@ export default function WidgetContent() {
       setListAllWidgets(listLocalStorage);
       setDefaultValueShout(defaultLocalStorage);
     }
+    // console.log(listAllWidgets);
   };
 
   const handleClickMenu = function () {
@@ -259,6 +261,7 @@ export default function WidgetContent() {
               listAllWidgets={listAllWidgets}
               setTotaltime={setTotaltime}
               totalTime={totalTime}
+              onClickEdit={onClickEdit}
             />
           );
         } else if (list.type === 'weather' || list.type === 'weatherNone') {

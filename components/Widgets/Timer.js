@@ -10,9 +10,10 @@ export default function TimerTest({
   listAllWidgets,
   setTotaltime,
   totalTime,
+  onClickEdit,
   onClickDelete = () => {},
 }) {
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(list.value || 0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   // const countRef = useRef(null);
@@ -26,13 +27,7 @@ export default function TimerTest({
   }, [zero]);
 
   useEffect(() => {
-    // แล้ว .map() ตำนวน list.value ที่เป็นวินาทีทั้งหมด แล้วเอาค่า มาคำนวน formatTime
-    const temp = [...listAllWidgets]
-      .map((data) => data.value)
-      .reduce((prev, next) => prev + next);
-    const totalTime = formatTime(temp);
-    // console.log(formatTime(temp));
-    setTotaltime(totalTime);
+    onClickEdit(list.id, timer)
   }, [timer]);
 
   useEffect(() => {
