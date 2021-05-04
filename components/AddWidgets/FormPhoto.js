@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import Btn from '../Btn';
 import { TextHeadWidget, TextError } from '../Modals/TextHead';
 import { BiSearchAlt } from 'react-icons/bi';
-import { createApi } from 'unsplash-js';
+// import { createApi } from 'unsplash-js';
+import Unsplash, { toJson } from 'unsplash-js';
 
 export default function FormPhoto({ onAdd }) {
   const [checkError, setCheckError] = useState('');
   const [photo, setPhoto] = useState([]);
   const [query, setQuery] = useState('');
 
-   const unsplash = new createApi({
+   const unsplash = new Unsplash({
      // See https://unsplash.com/developers
      // https://github.com/unsplash/unsplash-js
      accessKey: 'WHryKKM8-ZDMJqMGMl9ExUDXmOFNODvHSKKtACBSWr8',
    });
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     unsplash.search

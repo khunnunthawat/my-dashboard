@@ -201,6 +201,7 @@ const onSubmit = async (e) => {
 
 ###
   API unsplash
+  npm install unsplash-js@6.0.0
   https://unsplash.com/developers
   https://github.com/unsplash/unsplash-js
 ###

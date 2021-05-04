@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { CardPhoto } from '../Layouts/Card';
 import EditForm from '../AddWidgets/EditForm';
 import { ModalCard } from '../Modals/ModalCard';
-import { createApi } from 'unsplash-js';
+// import { createApi } from 'unsplash-js';
+import Unsplash, { toJson } from 'unsplash-js';
 
 export default function PhotoApi ({ list, onClickEdit, onClickDelete }) {
   const [modalActiveEdit, setModalActiveEdit] = useState(false);
   const [photo, setPhoto] = useState([]);
 
-  const unsplash = createApi({
-    // See https://unsplash.com/developers
-    // https://github.com/unsplash/unsplash-js
-    accessKey: 'WHryKKM8-ZDMJqMGMl9ExUDXmOFNODvHSKKtACBSWr8'
-  });
+ const unsplash = new Unsplash({
+     // See https://unsplash.com/developers
+     // https://github.com/unsplash/unsplash-js
+     accessKey: 'WHryKKM8-ZDMJqMGMl9ExUDXmOFNODvHSKKtACBSWr8',
+   });
 
   const handleCancel = function () {
     setModalActiveEdit(false);
