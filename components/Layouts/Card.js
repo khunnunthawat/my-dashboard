@@ -101,13 +101,9 @@ export const CardEditRefresh = ({
   );
 };
 
-export const CardPhoto = ({ title, children, onClickDelete, onClickEdit }) => {
+export const CardPhoto = ({ title, children, onClickDelete }) => {
   const handleClick = function (e) {
     onClickDelete(e);
-  };
-
-  const handleClickEdit = function (e) {
-    onClickEdit(e);
   };
 
   return (
@@ -115,9 +111,6 @@ export const CardPhoto = ({ title, children, onClickDelete, onClickEdit }) => {
       <div className={`${bgCard}`}>
         <h2 className={`${textCss}`}>{title}</h2>
         <div className={`${absCss}`}>
-          <button className={`${iconText} + mr-2`} onClick={handleClickEdit}>
-            <MdEdit />
-          </button>
           <button className={`${iconText}`} onClick={handleClick}>
             <IoClose />
           </button>

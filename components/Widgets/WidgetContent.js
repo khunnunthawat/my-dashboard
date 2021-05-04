@@ -18,7 +18,6 @@ import FormJustSay from '../AddWidgets/FormJustSay';
 import FormJustShout from '../AddWidgets/FormJustShout';
 import FormCounter from '../AddWidgets/FormCounter';
 import FormWeather from '../AddWidgets/FormWeather';
-import FormPhoto from '../AddWidgets/FormPhoto';
 
 // Layout_Card
 import { ModalCard } from '../Modals/ModalCard';
@@ -369,7 +368,13 @@ export default function WidgetContent() {
                 <TiWeatherPartlySunny className={`${iconClass}`} />
               </WidgetMenuCard>
               {/* My_Widget */}
-              <WidgetMenuCard title='Photo' onClick={handleClickPhoto}>
+              <WidgetMenuCard
+                title='Photo'
+                onClick={() => {
+                  handleClickAdd('photoApi', '');
+                }}
+                // onClick={handleClickPhoto}
+              >
                 <RiCameraLensFill className={`${iconClass}`} />
               </WidgetMenuCard>
             </div>
@@ -403,12 +408,6 @@ export default function WidgetContent() {
               onAdd={handleClickAdd}
               defaultValueShout={defaultValueShout}
             />
-          </ModalCard>
-        )}
-        {/* Modal_Photo */}
-        {modalActivePhoto && (
-          <ModalCard onCancel={handleCancel}>
-            <FormPhoto onAdd={handleClickAdd} />
           </ModalCard>
         )}
         {/* Modal_Settings */}

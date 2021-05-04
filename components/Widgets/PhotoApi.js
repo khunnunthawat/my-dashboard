@@ -1,63 +1,66 @@
 import React, { useState } from 'react';
 import { CardPhoto } from '../Layouts/Card';
-import EditForm from '../AddWidgets/EditForm';
-import { ModalCard } from '../Modals/ModalCard';
+import Btn from '../Btn';
+import { BiSearchAlt } from 'react-icons/bi';
 // import { createApi } from 'unsplash-js';
 import Unsplash, { toJson } from 'unsplash-js';
 
-export default function PhotoApi ({ list, onClickEdit, onClickDelete }) {
-  const [modalActiveEdit, setModalActiveEdit] = useState(false);
+export default function PhotoApi({ list, onClickDelete }) {
   const [photo, setPhoto] = useState([]);
-
- const unsplash = new Unsplash({
-     // See https://unsplash.com/developers
-     // https://github.com/unsplash/unsplash-js
-     accessKey: 'WHryKKM8-ZDMJqMGMl9ExUDXmOFNODvHSKKtACBSWr8',
-   });
-
-  const handleCancel = function () {
-    setModalActiveEdit(false);
-  };
+  const [query, setQuery] = useState('');
 
   const handleClick = function () {
     onClickDelete(list);
   };
 
-  const handleClickEdit = function () {
-    setModalActiveEdit(true);
-  };
+  const unsplash = new Unsplash({
+    // See https://unsplash.com/developers
+    accessKey: 'WHryKKM8-ZDMJqMGMl9ExUDXmOFNODvHSKKtACBSWr8',
+  });
 
-  const onEditSubmit = function (id, content) {
-    onClickEdit(id, content);
-    setModalActiveEdit(false);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    unsplash.search
+      .photos(query)
+      .then(toJson)
+      .then((json) => {
+        setPhoto(json.results);
+        // console.log(json);
+      });
   };
 
   return (
     <>
-      {modalActiveEdit && (
-        <ModalCard onCancel={handleCancel}>
-          <EditForm title='Photo' onEditSubmit={onEditSubmit} list={list} />
-        </ModalCard>
-      )}
       <CardPhoto
-        title='Photo'
+        title='Photos'
         key={list.id}
         onClickDelete={handleClick}
-        onClickEdit={handleClickEdit}
         list={list}
       >
-        <div className='text-center mt-8 mb-12'>
-          <h1 className='text-4xl font-bold'>{list.value}</h1>
-        </div>
-        <div className='card-list'>
+        <form onSubmit={onSubmit} className='flex'>
+          <div className='flex-1 mr-1'>
+            <input
+              // name='title'
+              name='query'
+              type='text'
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className='w-full px-2.5 py-1 focus:outline-none rounded-md'
+              placeholder='Input search photos...'
+            />
+          </div>
+          <div>
+            <Btn color='primary'>
+              <BiSearchAlt className='mx-auto text-2xl' />
+            </Btn>
+          </div>
+        </form>
+        <div>
           {photo.map((pic) => (
-            <div className='card' key={pic.id}>
+            <div key={pic.id}>
               <img
-                className='card--image'
                 alt={pic.alt_description}
                 src={pic.urls.full}
-                width='50%'
-                height='50%'
               ></img>
             </div>
           ))}{' '}
