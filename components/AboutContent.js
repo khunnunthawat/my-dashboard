@@ -13,8 +13,8 @@ export default function AboutContent() {
           <p>
             We have <strong>JustSay</strong>,{}
             <strong>JustShout</strong>,<strong>{} Counter</strong>,{}
-            <strong>Timer</strong>,
-            <strong>{} Weather</strong> and super hard <strong>TicTacToe</strong>
+            <strong>Timer</strong>,<strong>{} Weather</strong> and super hard{' '}
+            <strong>TicTacToe</strong>
             {} widgets! You can now add / modify / delete widgets or even
             destroy all of them, also view super great useless statistics! Now
             bundled with
@@ -26,6 +26,14 @@ export default function AboutContent() {
           <p>
             Crafted with <span className='text-pink-500'>♥</span> by Eiffel.
           </p>
+          <div className='flex flex-row-reverse space-x-4 space-x-reverse'>
+            <img
+              src='https://images.unsplash.com/profile-fb-1547572180-93a860f0a32b.jpg?auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff'
+              width='50'
+              height='50'
+              className='rounded-full border-solid border-white border-2 -mt-2'
+            />
+          </div>
         </div>
       </div>
     </>

@@ -3,6 +3,7 @@ import { IoClose } from 'react-icons/io5';
 import { MdEdit, MdRefresh } from 'react-icons/md';
 
 let mdCss = 'md:inner md:w-1/2 pb-4 md:pr-4';
+let mdCssPhoto = 'md:inner md:w-full pb-4 md:pr-4';
 let bgCard = 'p-5 border-1 bg-white rounded-2xl relative';
 let textCss = 'text-lg font-bold text-gray-400 mb-1.5';
 let absCss = 'absolute top-5 right-5';
@@ -107,7 +108,7 @@ export const CardPhoto = ({ title, children, onClickDelete }) => {
   };
 
   return (
-    <div className={`${mdCss}`}>
+    <div className={`${mdCssPhoto}`}>
       <div className={`${bgCard}`}>
         <h2 className={`${textCss}`}>{title}</h2>
         <div className={`${absCss}`}>

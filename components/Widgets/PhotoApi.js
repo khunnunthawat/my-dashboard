@@ -25,7 +25,7 @@ export default function PhotoApi({ list, onClickDelete }) {
       .then(toJson)
       .then((json) => {
         setPhoto(json.results);
-        // console.log(json);
+        console.log(json);
       });
   };
 
@@ -55,15 +55,16 @@ export default function PhotoApi({ list, onClickDelete }) {
             </Btn>
           </div>
         </form>
-        <div>
+        <div className='grid sm:grid-cols-3 md:grid-cols-5'>
           {photo.map((pic) => (
-            <div key={pic.id}>
+            <div className='grid max-w-4xl mx-auto p-2' key={pic.id}>
               <img
                 alt={pic.alt_description}
                 src={pic.urls.full}
+                className='w-full block rounded'
               ></img>
             </div>
-          ))}{' '}
+          ))}
         </div>
       </CardPhoto>
     </>
