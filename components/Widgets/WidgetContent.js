@@ -6,19 +6,19 @@ import {
   RiAddCircleLine,
   RiIncreaseDecreaseLine,
   RiSettings3Line,
+  RiCameraLensFill
 } from 'react-icons/ri';
 import { AiOutlineMessage } from 'react-icons/ai';
 import { IoTimerOutline } from 'react-icons/io5';
 import { HiOutlineSpeakerphone } from 'react-icons/hi';
 import { TiWeatherPartlySunny } from 'react-icons/ti';
-import { VscJson } from 'react-icons/vsc';
 
 // Form_Input
 import FormJustSay from '../AddWidgets/FormJustSay';
 import FormJustShout from '../AddWidgets/FormJustShout';
 import FormCounter from '../AddWidgets/FormCounter';
 import FormWeather from '../AddWidgets/FormWeather';
-import FormJson from '../AddWidgets/FormJson';
+import FormPhoto from '../AddWidgets/FormPhoto';
 
 // Layout_Card
 import { ModalCard } from '../Modals/ModalCard';
@@ -31,7 +31,7 @@ import JustShout from './JustShout';
 import Counter from './Counter';
 import Timer from './Timer';
 import Weather from './Weather';
-import JsonApi from './JsonApi';
+import PhotoApi from './PhotoApi';
 
 // Settings
 import SettingCard from '../SettingTools/SettingCard';
@@ -46,7 +46,7 @@ export default function WidgetContent() {
   const [modalActiveJustShout, setModalActiveJustShout] = useState(false);
   const [modalActiveCounter, setModalActiveCounter] = useState(false);
   const [modalActiveWeather, setModalActiveWeather] = useState(false);
-  const [modalActiveJSON, setModalActiveJSON] = useState(false);
+  const [modalActivePhoto, setModalActivePhoto] = useState(false);
 
   const [defaultValueShout, setDefaultValueShout] = useState([]);
 
@@ -108,9 +108,9 @@ export default function WidgetContent() {
     setModalActiveWeather(true);
   };
 
-  const handleClickJSON = function () {
+  const handleClickPhoto = function () {
     setModalActiveMenu(false);
-    setModalActiveJSON(true);
+    setModalActivePhoto(true);
   };
 
   const handleClickSetting = function () {
@@ -123,7 +123,7 @@ export default function WidgetContent() {
     setModalActiveJustShout(false);
     setModalActiveCounter(false);
     setModalActiveWeather(false);
-    setModalActiveJSON(false);
+    setModalActivePhoto(false);
     setModalActiveSetting(false);
   };
 
@@ -273,9 +273,9 @@ export default function WidgetContent() {
               list={list}
             />
           );
-        } else if (list.type === 'jsonApi') {
+        } else if (list.type === 'photoApi') {
           return (
-            <JsonApi
+            <PhotoApi
               onClickEdit={onClickEdit}
               onClickDelete={handleClickDelete}
               key={list.id}
@@ -369,8 +369,8 @@ export default function WidgetContent() {
                 <TiWeatherPartlySunny className={`${iconClass}`} />
               </WidgetMenuCard>
               {/* My_Widget */}
-              <WidgetMenuCard title='JSON' onClick={handleClickJSON}>
-                <VscJson className={`${iconClass}`} />
+              <WidgetMenuCard title='Photo' onClick={handleClickPhoto}>
+                <RiCameraLensFill className={`${iconClass}`} />
               </WidgetMenuCard>
             </div>
           </ModalCard>
@@ -405,10 +405,10 @@ export default function WidgetContent() {
             />
           </ModalCard>
         )}
-        {/* Modal_JSON */}
-        {modalActiveJSON && (
+        {/* Modal_Photo */}
+        {modalActivePhoto && (
           <ModalCard onCancel={handleCancel}>
-            <FormJson onAdd={handleClickAdd} />
+            <FormPhoto onAdd={handleClickAdd} />
           </ModalCard>
         )}
         {/* Modal_Settings */}

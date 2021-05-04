@@ -11,13 +11,13 @@ export default function EditForm({ onEditSubmit, list, title }) {
   
   if (list.type === 'weather') {
     placeholder = 'Enter a city';
-    console.log('Edit WeatherCity : '+ list.value.data.name);
+    // console.log('Edit WeatherCity : '+ list.value.data.name);
     defaultValue = list.value.data.name;
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.preventDefault());
+    // console.log(e.preventDefault());
     if (e.target.title.value.length < 3) {
       setCheckError('Please enter at least 3 characters.');
     } else {
@@ -27,8 +27,8 @@ export default function EditForm({ onEditSubmit, list, title }) {
         onEditSubmit(e.target.title.value.trim());
       } else if (list.type === 'weather' || list.type === 'weatherNone') {
         onEditSubmit(list.id, list.type, e.target.title.value.trim());
-      } else if (list.type === 'jsonApi') {
-        onEditSubmit(list.id, e.target.title.value.trim());
+      } else if (list.type === 'photoApi') {
+        onEditSubmit(list.id, e.target.loading.value.trim());
       }
     }
   };
