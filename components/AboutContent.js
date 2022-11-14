@@ -14,7 +14,7 @@ export default function AboutContent() {
             We have <strong>JustSay</strong>,{}
             <strong>JustShout</strong>,<strong>{} Counter</strong>,{}
             <strong>Timer</strong>,<strong>{} Weather</strong> and super hard{' '}
-            <strong>TicTacToe</strong>
+            <strong>Search Photo</strong>
             {} widgets! You can now add / modify / delete widgets or even
             destroy all of them, also view super great useless statistics! Now
             bundled with
