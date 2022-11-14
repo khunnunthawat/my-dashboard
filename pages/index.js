@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Widgets - Daytech Dashboard</title>
+        <title>Widgets - EIFFEL Dashboard</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <WidgetContent />
