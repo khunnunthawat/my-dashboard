@@ -1,21 +1,40 @@
 import React from 'react';
-import Card from '../components/Card';
 
 export default function AboutContent() {
+  const say = 'I love <programming />';
+
   return (
-    <div className='w-100 max-w-4xl mx-auto p-5'>
-      <h2 className='text-2xl'>About</h2>
+    <>
+      <h2 className='text-xl'>About</h2>
       <div className='pt-3'>
-        <Card title='I love <programming />'>
+        <div className='p-5 bg-white border-1 rounded-2xl'>
+          <h2 className='text-lg font-bold text-gray-400 mb-1.5'>{say}</h2>
           <p>
-            Currently, we have only <strong>JustSay</strong>,
-            <strong>Counter</strong> and <strong>Timer</strong> Widgets
+            We have <strong>JustSay</strong>,{}
+            <strong>JustShout</strong>,<strong>{} Counter</strong>,{}
+            <strong>Timer</strong>,<strong>{} Weather</strong> and super hard{' '}
+            <strong>Search Photo</strong>
+            {} widgets! You can now add / modify / delete widgets or even
+            destroy all of them, also view super great useless statistics! Now
+            bundled with
+          </p>
+          <p>
+            state persistence, that remember your widgets eternally, except you
+            wipe up your browser data :P
           </p>
           <p>
             Crafted with <span className='text-pink-500'>♥</span> by Eiffel.
           </p>
-        </Card>
+          <div className='flex flex-row-reverse space-x-4 space-x-reverse'>
+            <img
+              src='https://images.unsplash.com/profile-fb-1547572180-93a860f0a32b.jpg?auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff'
+              width='50'
+              height='50'
+              className='-mt-2 border-2 border-white border-solid rounded-full'
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

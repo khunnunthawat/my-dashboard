@@ -2,7 +2,6 @@ App Preview: [My Dashboard](https://my-dashboard-phase4.vercel.app/)
 
 ![Screen Shot 2021-07-27 at 8 56 22 PM](https://user-images.githubusercontent.com/68588944/127167657-9a98867a-edef-4668-ac65-2850ffc717c1.png)
 
-
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
