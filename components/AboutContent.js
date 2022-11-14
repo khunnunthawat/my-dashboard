@@ -1,14 +1,13 @@
 import React from 'react';
 
 export default function AboutContent() {
-
   const say = 'I love <programming />';
 
   return (
     <>
       <h2 className='text-xl'>About</h2>
       <div className='pt-3'>
-        <div className='p-5 border-1 bg-white rounded-2xl'>
+        <div className='p-5 bg-white border-1 rounded-2xl'>
           <h2 className='text-lg font-bold text-gray-400 mb-1.5'>{say}</h2>
           <p>
             We have <strong>JustSay</strong>,{}
@@ -31,7 +30,7 @@ export default function AboutContent() {
               src='https://images.unsplash.com/profile-fb-1547572180-93a860f0a32b.jpg?auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff'
               width='50'
               height='50'
-              className='rounded-full border-solid border-white border-2 -mt-2'
+              className='-mt-2 border-2 border-white border-solid rounded-full'
             />
           </div>
         </div>
